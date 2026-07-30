@@ -1,9 +1,9 @@
 {
-  "name": "lorenz-attractor-demo",
+  "name": "turing-site",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A tiny Scala-docs-inspired Lorenz attractor site deployable on Cloudflare Workers.",
+  "description": "A two-page Turing marketing site deployable on Cloudflare Workers.",
   "scripts": {
     "verify:cloudflare": "node ./scripts/verify-cloudflare-assets.mjs",
     "dev": "wrangler dev",

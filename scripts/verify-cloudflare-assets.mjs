@@ -6,7 +6,7 @@ const root = process.cwd();
 const requiredPaths = [
   'public',
   'public/index.html',
-  'public/lorenz.js',
+  'public/turing.html',
   'public/robots.txt',
   'public/sitemap.xml',
   'worker.js',

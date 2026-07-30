@@ -1,11 +1,11 @@
-# Lorenz Attractor Demo
+# Turing Website
 
-A small static site with a Scala-doc-inspired layout and an animated Lorenz attractor, configured for Cloudflare Workers.
+A small static two-page marketing site for Turing, configured for Cloudflare Workers.
 
 ## Project files
 
 - `public/index.html` — page structure and styling
-- `public/lorenz.js` — Lorenz system simulation and canvas rendering
+- `public/turing.html` — product detail page for Turing
 - `public/robots.txt` — crawler directives and sitemap location
 - `public/sitemap.xml` — sitemap entry for `https://turingcore.io/`
 - `worker.js` — minimal Cloudflare Worker that serves static assets
@@ -60,8 +60,6 @@ If you are deploying from a Git-connected Cloudflare project, also make sure the
 ## Notes
 
 - The Worker serves everything from the `public/` directory via the `ASSETS` binding.
-- The canvas is responsive and supports high-DPI displays.
-- If the device requests reduced motion, the page renders a still frame instead of a continuous animation.
 - Styling is embedded in `public/index.html` to keep the site portable and simple.
 - The project is pinned to `wrangler` 3.x so it can be validated locally on Node 18 in this workspace.
 - Canonical production URL is `https://turingcore.io/` and is referenced in SEO metadata and sitemap files.

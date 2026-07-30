@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turing | How It Works</title>
+    <meta
+      name="description"
+      content="Learn how Turing delivers cumulative, machine-checked formal verification using pure-functional methods in Haskell, Scala, and Coq."
+    />
+    <meta
+      name="keywords"
+      content="formal verification, smart contracts, haskell, scala, coq, machine-learning, artificial-intelligence, probabilistic-programming, bayesian-inference"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#dff0df" />
+    <link rel="canonical" href="https://turingcore.io/turing.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://turingcore.io/turing.html" />
+    <meta property="og:title" content="Turing | How It Works" />
+    <meta
+      property="og:description"
+      content="A practical look at cumulative proof workflows that improve release speed and confidence."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://turingcore.io/turing.html" />
+    <meta name="twitter:title" content="Turing | How It Works" />
+    <meta
+      name="twitter:description"
+      content="Turing uses pure-functional proof systems to build reusable correctness evidence over time."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Turing | How It Works",
+        "url": "https://turingcore.io/turing.html",
+        "description": "How Turing delivers cumulative, machine-checked formal verification outcomes for software teams.",
+        "about": ["formal verification", "smart contracts", "haskell", "scala", "coq"]
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #dff0df;
+        --panel: #eef8ee;
+        --text: #101010;
+        --line: #1f1f1f;
+        --muted: #2f2f2f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        width: min(980px, 92vw);
+        margin: 0 auto;
+        padding: 1.2rem 0 2.5rem;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 0.9rem;
+      }
+
+      a {
+        color: var(--text);
+      }
+
+      .brand {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+      }
+
+      nav a {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+      }
+
+      nav a:hover,
+      nav a:focus-visible {
+        border-bottom-color: var(--line);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      h1 {
+        margin-top: 1.5rem;
+        font-size: clamp(1.6rem, 4.8vw, 2.4rem);
+      }
+
+      h2 {
+        margin-top: 1.6rem;
+        font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+      }
+
+      p {
+        margin: 0.65rem 0 0;
+      }
+
+      .lead {
+        max-width: 78ch;
+        color: var(--muted);
+      }
+
+      .steps,
+      .outcomes {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 0.95rem;
+      }
+
+      .card h3 {
+        font-size: 1.03rem;
+      }
+
+      .cta {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 0.55rem 0.95rem;
+        border: 1px solid var(--line);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        background: var(--text);
+        color: var(--bg);
+      }
+
+      @media (min-width: 760px) {
+        .steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .outcomes {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a class="brand" href="/">Turing</a>
+        <nav aria-label="Primary">
+          <a href="/">Home</a>
+        </nav>
+      </header>
+
+      <main>
+        <h1>How Turing works</h1>
+        <p class="lead">
+          Turing is a prover agent for teams shipping high-stakes software. It reads your contracts,
+          drafts a formal specification with you, and searches for machine-checked proofs that your code
+          satisfies each approved property across every input and every execution.
+        </p>
+
+        <h2>Why the approach is different</h2>
+        <p class="lead">
+          Turing uses a pure-functional stack with Haskell, Scala, and Coq to support cumulative proofs.
+          Instead of treating verification as isolated theorem work, it composes reusable proof assets over
+          time. Compared with Lean-centered one-shot workflows, this keeps more verification value alive
+          through refactors, reducing repeated audit effort and accelerating release decisions.
+        </p>
+
+        <section class="steps" aria-label="Workflow">
+          <article class="card">
+            <h3>1. Import and model</h3>
+            <p>Bring in your contracts and implementation artifacts. Turing constructs a precise model scope.</p>
+          </article>
+          <article class="card">
+            <h3>2. Review the specification</h3>
+            <p>Approve properties in plain language, pseudocode, and formal form before proof spend begins.</p>
+          </article>
+          <article class="card">
+            <h3>3. Prove continuously</h3>
+            <p>Proof search runs under your budget cap and emits replayable artifacts for each solved property.</p>
+          </article>
+          <article class="card">
+            <h3>4. Re-check on every push</h3>
+            <p>CI catches behavioral drift early so evidence keeps pace with your shipping cadence.</p>
+          </article>
+        </section>
+
+        <h2>Three outcomes per property</h2>
+        <section class="outcomes" aria-label="Property outcomes">
+          <article class="card">
+            <h3>Proven</h3>
+            <p>A replayable, machine-checked theorem your team and external reviewers can independently verify.</p>
+          </article>
+          <article class="card">
+            <h3>Refuted</h3>
+            <p>A concrete executable counterexample that reproduces the failing path so fixes are immediate.</p>
+          </article>
+          <article class="card">
+            <h3>Not yet proven</h3>
+            <p>A transparent report that a property was not solved under the current spend cap and constraints.</p>
+          </article>
+        </section>
+
+        <div class="cta">
+          <a class="button" href="mailto:jordanrule@gmail.com?subject=Turing%20Early%20Access">Request early access</a>
+          <a class="button" href="/">Back to landing page</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+
