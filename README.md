@@ -7,7 +7,7 @@ A small static two-page marketing site for Turing, configured for Cloudflare Wor
 - `public/index.html` — page structure and styling
 - `public/turing.html` — product detail page for Turing
 - `public/robots.txt` — crawler directives and sitemap location
-- `public/sitemap.xml` — sitemap entry for `https://turingcore.io/`
+- `public/sitemap.xml` — sitemap entry for `https://turingops.ai/`
 - `worker.js` — minimal Cloudflare Worker that serves static assets
 - `wrangler.toml` — Cloudflare Workers configuration
 - `package.json` — local scripts for dev, config checking, and deployment
@@ -62,6 +62,6 @@ If you are deploying from a Git-connected Cloudflare project, also make sure the
 - The Worker serves everything from the `public/` directory via the `ASSETS` binding.
 - Styling is embedded in `public/index.html` to keep the site portable and simple.
 - The project is pinned to `wrangler` 3.x so it can be validated locally on Node 18 in this workspace.
-- Canonical production URL is `https://turingcore.io/` and is referenced in SEO metadata and sitemap files.
+- Canonical production URL is `https://turingops.ai/` and is referenced in SEO metadata and sitemap files.
 - `npm run verify:cloudflare` checks that the required deploy files exist before a dry run or real deploy.
 
