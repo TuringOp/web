@@ -6,7 +6,7 @@
     <title>Turing | How It Works</title>
     <meta
       name="description"
-      content="Learn how Turing delivers cumulative, machine-checked formal verification using pure-functional methods in Haskell, Scala, and Coq."
+      content="Turing delivers cumulative, machine-checked formal verification using pure-functional methods in Haskell, Scala, and Coq."
     />
     <meta
       name="keywords"
@@ -20,7 +20,7 @@
     <meta property="og:title" content="Turing | How It Works" />
     <meta
       property="og:description"
-      content="A practical look at cumulative proof workflows that improve release speed and confidence."
+      content="A concise overview of cumulative proof workflows built for critical software."
     />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://turingops.ai/turing.html" />
@@ -278,9 +278,9 @@
         <p class="kicker">Platform</p>
         <h1>How Turing works</h1>
         <p class="lead">
-          Turing is a prover agent for teams shipping high-stakes software. It reads your contracts,
-          drafts a formal specification with you, and searches for machine-checked proofs that your code
-          satisfies each approved property across every input and every execution.
+          Turing is a prover agent for critical software. It reads your contracts, drafts a formal
+          specification with you, and searches for machine-checked proofs that the code satisfies each
+          approved property across every input and every execution.
         </p>
 
         <p class="kicker">Differentiation</p>
@@ -288,8 +288,8 @@
         <p class="lead">
           Turing uses a pure-functional stack with Haskell, Scala, and Coq to support cumulative proofs.
           Instead of treating verification as isolated theorem work, it composes reusable proof assets over
-          time. Compared with Lean-centered one-shot workflows, this keeps more verification value alive
-          through refactors, reducing repeated audit effort and accelerating release decisions.
+          time. The result is a verification base that survives refactors and re-checks cleanly as the code
+          evolves.
         </p>
 
         <p class="kicker">Workflow</p>
@@ -300,7 +300,7 @@
           </article>
           <article class="card">
             <h3>2. Review the specification</h3>
-            <p>Approve properties in plain language, pseudocode, and formal form before proof spend begins.</p>
+            <p>Approve properties in plain language, pseudocode, and formal form before proof search begins.</p>
           </article>
           <article class="card">
             <h3>3. Prove continuously</h3>
@@ -308,7 +308,7 @@
           </article>
           <article class="card">
             <h3>4. Re-check on every push</h3>
-            <p>CI catches behavioral drift early so evidence keeps pace with your shipping cadence.</p>
+            <p>CI catches behavioral drift early so evidence stays aligned with the source of truth.</p>
           </article>
         </section>
 
@@ -317,11 +317,11 @@
         <section class="outcomes" aria-label="Property outcomes">
           <article class="card">
             <h3>Proven</h3>
-            <p>A replayable, machine-checked theorem your team and external reviewers can independently verify.</p>
+            <p>A replayable, machine-checked theorem that any reviewer can independently verify.</p>
           </article>
           <article class="card">
             <h3>Refuted</h3>
-            <p>A concrete executable counterexample that reproduces the failing path so fixes are immediate.</p>
+            <p>A concrete executable counterexample that reproduces the failing path so the issue is explicit.</p>
           </article>
           <article class="card">
             <h3>Not yet proven</h3>
@@ -334,6 +334,14 @@
           <a class="button secondary" href="/">Back to landing page</a>
         </div>
       </main>
+
+      <footer>
+        <p>
+          The approach reflects a standard lesson in applied cryptography: security claims only hold when
+          the composition is disciplined. Bellare and Rogaway’s authenticated-encryption research remains a
+          useful baseline for that principle.
+        </p>
+      </footer>
     </div>
   </body>
 </html>
