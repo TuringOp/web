@@ -125,6 +125,10 @@
         border-bottom-color: var(--line);
       }
 
+      main {
+        margin-top: var(--space-4);
+      }
+
       h1,
       h2,
       h3 {
@@ -140,8 +144,7 @@
       }
 
       h2 {
-        font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-        margin-bottom: var(--space-2);
+        font-size: clamp(1.28rem, 3vw, 1.62rem);
       }
 
       .kicker {
@@ -154,7 +157,7 @@
       }
 
       main > .kicker:first-child {
-        margin-top: var(--space-4);
+        margin-top: 0;
       }
 
       p {
@@ -219,6 +222,24 @@
       .button.secondary {
         background: transparent;
         color: var(--text);
+      }
+
+      footer {
+        margin-top: var(--space-5);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .citation {
+        max-width: 72ch;
+        font-size: 0.83rem;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .citation a {
+        color: var(--muted);
+        text-underline-offset: 0.12em;
       }
 
       @media (min-width: 760px) {
@@ -336,9 +357,9 @@
       </main>
 
       <footer>
-        <p>
+        <p class="citation">
           Reference: M. Bellare and P. Rogaway, authenticated-encryption papers and notes,
-          <a href="https://web.cs.ucdavis.edu/~rogaway/papers/ad.html" target="_blank" rel="noopener noreferrer">https://web.cs.ucdavis.edu/~rogaway/papers/ad.html</a>.
+          <a href="https://web.cs.ucdavis.edu/~rogaway/papers/ad.html" target="_blank" rel="noopener noreferrer">Rogaway paper page</a>.
         </p>
       </footer>
     </div>
