@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://turingops.ai/sitemap.xml
+Host: turingops.ai
 
