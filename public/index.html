@@ -235,7 +235,18 @@
         margin-top: var(--space-5);
         padding-top: var(--space-3);
         border-top: 1px solid var(--line-soft);
-        font-size: 0.93rem;
+      }
+
+      .citation {
+        max-width: 72ch;
+        font-size: 0.83rem;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .citation a {
+        color: var(--muted);
+        text-underline-offset: 0.12em;
       }
 
       @media (min-width: 760px) {
@@ -332,7 +343,7 @@
       </main>
 
       <footer>
-        <p>
+        <p class="citation">
           Reference: M. Bellare and P. Rogaway, authenticated-encryption papers and notes,
           <a href="https://web.cs.ucdavis.edu/~rogaway/papers/ad.html" target="_blank" rel="noopener noreferrer">https://web.cs.ucdavis.edu/~rogaway/papers/ad.html</a>.
         </p>
