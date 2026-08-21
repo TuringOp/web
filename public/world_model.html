@@ -6,7 +6,7 @@
     <title>Turing | Dependently Typed World Models</title>
     <meta
       name="description"
-      content="A detailed report on dependently typed world models, connecting model-based reinforcement learning in /world_models with Rocq proofs over partial commutative monoids in /fcsl-pcm."
+      content="A detailed essay on dependently typed world models, connecting model-based reinforcement learning with Rocq proofs over partial commutative monoids."
     />
     <meta
       name="keywords"
@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Turing | Dependently Typed World Models" />
     <meta
       name="twitter:description"
-      content="A report connecting world-model planning in /world_models with proof-carrying resource models from /fcsl-pcm."
+      content="A report connecting world-model planning with proof-carrying resource models and dependent type theory."
     />
     <script type="application/ld+json">
       {
@@ -194,10 +194,11 @@
       .kicker {
         display: block;
         margin: var(--space-5) 0 var(--space-1);
-        font-size: 0.74rem;
-        letter-spacing: 0.08em;
+        font-size: 0.72rem;
+        letter-spacing: 0.11em;
         text-transform: uppercase;
         font-weight: 600;
+        color: var(--muted);
       }
 
       main > .kicker:first-child {
@@ -205,14 +206,15 @@
       }
 
       .lead {
-        max-width: 74ch;
+        max-width: 68ch;
         color: var(--muted);
-        font-size: 1.08rem;
+        font-size: 1.12rem;
+        line-height: 1.74;
       }
 
       .article {
         display: grid;
-        gap: 1.2rem;
+        gap: 1.5rem;
       }
 
       .section {
@@ -220,12 +222,26 @@
         gap: 0.95rem;
       }
 
+      .section + .section {
+        padding-top: 1.3rem;
+        border-top: 1px solid rgba(155, 168, 154, 0.45);
+      }
+
+      .section h2 {
+        max-width: 24ch;
+      }
+
+      .section p {
+        hanging-punctuation: first;
+      }
+
       .callout {
         max-width: 76ch;
-        padding: 1rem 1rem 0.9rem;
+        padding: 1.05rem 1rem 0.95rem;
         background: var(--panel);
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
+        font-style: italic;
       }
 
       .code-block {
@@ -265,7 +281,7 @@
       }
 
       footer {
-        margin-top: var(--space-5);
+        margin-top: calc(var(--space-5) + 0.4rem);
         padding-top: var(--space-3);
         border-top: 1px solid var(--line-soft);
       }
@@ -343,12 +359,12 @@
         <p class="kicker">Report</p>
         <h1>Dependently Typed World Models</h1>
         <p class="lead">
-          A world model is, at heart, a machine for rehearsing reality. It takes the rush and clatter of
-          perception, compresses that stream into a latent account of what matters, and then asks a delicate
-          question: if I do this next, what sort of world will I wake up in? The ambition is grand, almost
-          novelistic. The danger is that the model's confidence often outruns its discipline. Dependent type
-          theory offers a way to turn that confidence into something sterner: an imagination that carries its
-          obligations with it.
+          A world model is, at heart, a machine for rehearsing reality. It gathers the rush of perception,
+          compresses it into a private account of what matters, and then asks a question that feels at once
+          mechanical and strangely human: if I do this next, what sort of world will greet me? One can see why
+          the field has fallen for the phrase. It promises not just calculation but poise. Yet the trouble with
+          machine imagination is that it so often becomes self-impressed. Dependent type theory offers a sterner
+          bargain—an imagination made to travel with its papers.
         </p>
 
         <div class="article">
@@ -356,64 +372,58 @@
             <p class="kicker">World models</p>
             <h2 id="broad-strokes">The broad strokes: a history of machine imagination</h2>
             <p>
-              The phrase <em>world model</em> has worn many costumes. In classical control, it meant a state-space
-              model: equations that advanced a system from one instant to the next. In cognitive science, it
-              suggested an internal picture of the world, the sort of thing an animal might carry while deciding
-              whether a rustle in the grass is wind or predator. In modern machine learning, especially in
-              model-based reinforcement learning, it has come to mean a learned simulator: a neural structure
-              that predicts observations, rewards, or latent dynamics well enough that an agent can plan with it.
+              The phrase <em>world model</em> has led several lives. In the age of control theory, it belonged to
+              equations that marched a system from one instant to the next. In cognitive science, it suggested an
+              inner picture of the world, the quiet mental staging ground on which creatures decide whether a rustle
+              in the grass is wind, prey, or danger. In machine learning, the phrase has lately become more
+              theatrical still. A world model is now often a learned simulator, a synthetic sense of how scenes,
+              rewards, and hidden dynamics unfold over time.
             </p>
             <p>
-              The attraction is obvious. A system that can imagine futures before it spends a real action in the
-              environment can be more sample-efficient, more strategic, and more explainable than one that learns
-              only by reflex. A world model gives planning a stage. It lets an agent try on possible futures,
-              discard clumsy ones, and move through the real world with the practiced air of someone who has
-              already been there in rehearsal.
+              The attraction is easy to understand. A system that can imagine futures before it spends a real move
+              in the world may learn faster, plan further, and seem less like a reflex machine than an actor who has
+              at least read the next scene. A world model gives decision-making a stage. It lets an agent try on
+              possible futures, discard the awkward ones, and proceed with the unnerving calm of something that has
+              already rehearsed the moment.
             </p>
             <p>
-              Yet world models have always carried two intertwined promises. The first is instrumental: they can
-              improve performance. The second is interpretive: they seem to offer a glimpse into what the system
-              thinks the world is. That second promise is part of their glamour. If a model can reconstruct the
-              scene ahead, forecast the reward curve, and evolve an internal state over time, then it feels as if
-              we are no longer dealing with a mere function approximator but with something closer to a theory of
-              the environment.
+              Their glamour comes from a double promise. One promise is practical: better performance, fewer wasted
+              actions, more foresight. The other is interpretive. A world model seems to offer a peek at what the
+              system believes the world to be. If it can reconstruct the scene ahead, anticipate the arc of reward,
+              and carry a durable inner state from moment to moment, then it begins to look less like a statistical
+              gadget and more like a point of view.
             </p>
           </section>
 
           <section class="section" aria-labelledby="local-example">
             <p class="kicker">A local specimen</p>
-            <h2 id="local-example">What the repository's <code>/world_models</code> directory actually does</h2>
+            <h2 id="local-example">What a serious world-modeling stack tends to look like in practice</h2>
             <p>
-              The local <code>/world_models</code> directory is a useful, concrete specimen. It is not a metaphorical
-              world model. It is an engineering library for visual planning. The README describes it as a
-              platform-agnostic toolkit for agents that plan from images, and the surrounding structure makes the
-              scope legible: <code>agents/</code> holds model families such as PlaNet, SV2P, and pure reward variants;
-              <code>planners/</code> contains the decision procedures that query those models; <code>simulate/</code>
-              executes full episodes; <code>tasks/</code> wraps environments from DeepMind Control and Atari; and
-              <code>configs/</code> records experiment configurations for different planning regimes.
+              When world models leave the paper and enter the workshop, they become less like singular inventions
+              than like neighborhoods. One part of the system learns the look and motion of things. Another samples
+              possible futures. Another keeps score. Another compares the dream with the day. Still another tidies
+              the peculiar manners of each environment so the whole affair does not collapse into ad hoc exception.
+              What emerges is not a single trick but an ecology.
             </p>
             <p>
-              Several ideas in the code are especially revealing. In <code>world_models/planners/planners.py</code>,
-              the <code>CEM</code> planner is defined as a planning loop over learned dynamics. It observes the previous
-              image, action, and reward; tiles them across many candidate futures; generates action proposals;
-              asks the model to predict consequences; scores those predictions; and then refits its sampling
-              distribution around the best trajectories. This is not reactive control. It is deliberation under a
-              learned surrogate of the world.
+              The rhythm of the thing is almost literary. A planner begins with the latest glimpse of the world,
+              remembers what was just done and what it cost or earned, fans out a cloud of possibilities, and asks,
+              with remarkable patience, what each one would bring. It then returns to the most promising line of
+              play and narrows its attention there. This is not reaction in the old stimulus-and-response sense. It
+              is deliberation conducted inside a provisional fiction.
             </p>
             <p>
-              In <code>world_models/simulate/simulate.py</code>, the library shows its operational purpose with unusual
-              clarity. A single episode is built from a running ledger of observations, actions, rewards, and the
-              model's predictions. The code computes approximate values, stacks per-step records into episode
-              arrays, and returns both what happened and what the model believed would happen. That pairing is the
-              moral center of the library: reality in one hand, prediction in the other.
+              At the end there is often a revealing double entry: what actually happened, and what the model thought
+              would happen. The world and its understudy are kept side by side. That pairing is the moral center of
+              the enterprise. Reality sits in one hand, prediction in the other, and the discrepancy between them is
+              not merely an error term but a lesson.
             </p>
             <p>
-              The README adds an important empirical correction to the popular story. Reward prediction alone, it
-              says, is usually not enough in online visual model-based reinforcement learning; image prediction
-              matters more, and image reconstruction error correlates more strongly with eventual performance.
-              That is an instructive finding. It suggests that a useful world model is not merely a reward oracle.
-              It must preserve enough of the world's texture to support exploration, not just enough of its payoff
-              surface to imitate good luck.
+              One of the chastening discoveries of the field is that the smell of reward is not enough. Systems that
+              learn only the shape of payoff often become brittle, opportunistic, a little too pleased with
+              themselves. Systems that learn more of the world's actual texture—its surfaces, continuities,
+              occlusions, and transitions—tend to explore more wisely. A useful world model, then, is not merely a
+              reward oracle. It must keep enough of the world's grain to support curiosity.
             </p>
           </section>
 
@@ -421,18 +431,17 @@
             <p class="kicker">Explanatory power</p>
             <h2 id="explanatory-power">What world models explain, and what they often leave implicit</h2>
             <p>
-              For all their appeal, ordinary world models usually explain in the wrong register. They can tell us
-              that certain futures were scored highly, that certain frames were reconstructed sharply, that
-              certain latents are stable under rollout. But they are less good at telling us what must remain true
-              no matter how the latent state evolves. They do not naturally distinguish between a state that is
-              merely likely and a state that is admissible. They do not insist, at the type level, that a plan
-              preserve provenance, resource ownership, privacy budgets, or contractual boundaries.
+              For all their allure, ordinary world models often explain in the wrong register. They can tell us which
+              futures looked attractive, which scenes were reconstructed crisply, which hidden states remained stable
+              under a rollout. What they are worse at telling us is what must remain true regardless of how the story
+              unfolds. They are good with likelihood and weak on legitimacy.
             </p>
             <p>
-              This is where many contemporary systems become eloquent and vague at the same time. The model can
-              say, in effect, “I predict a future like this.” What it cannot easily say is, “Only futures of this
-              certified shape are even representable to me.” In most ML stacks, such rules live in comments,
-              validators, or post-hoc monitoring. They are external to the model's ontology.
+              This is where many contemporary systems become eloquent and vague at once. The model can say, in
+              effect, “I expect the future to look like this.” What it cannot easily say is, “Only futures of this
+              permitted shape may even be entertained.” The rules that matter most—about provenance, ownership,
+              budgets, permissions, or scope—are often kept elsewhere, in policies, monitors, comments, and human
+              caution. They hover around the model rather than living inside its understanding of the world.
             </p>
             <div class="callout">
               <p>
@@ -447,51 +456,47 @@
             <p class="kicker">Dependent type theory</p>
             <h2 id="dependent-types">How dependent types change the conversation</h2>
             <p>
-              Dependent type theory begins from a sternly practical idea: the shape of data can depend on the
-              value of data, and proofs can travel with programs as first-class companions. Instead of storing a
-              latent state and hoping later checks will certify it, one can store a latent state together with
-              evidence that it satisfies an invariant. Instead of defining a transition function over all nominal
-              states, one can define transitions only over states that are already known to be well-formed.
+              Dependent type theory begins from a severe but fruitful premise: the shape of a thing may depend on
+              what the thing actually is, and proof need not arrive afterward like a chaperone. It can travel with
+              the program from the start. Instead of keeping a latent state and hoping later to certify it, one can
+              keep the state together with evidence that it has been properly formed.
             </p>
             <p>
-              In a theorem prover such as the Rocq Prover, this changes software from something that is merely
-              executable into something that can be constructive in a literal sense. An object is not just a value;
-              it can be a value plus the evidence required to inhabit a specification. A planner is not merely a
-              function from history to action; it can be a function from <em>well-typed</em> histories to actions
-              whose safety obligations are discharged as part of construction.
+              In a system such as Rocq, software becomes constructive in the plainest meaning of the word. An object
+              is not just a value; it may be a value accompanied by the evidence required to belong where it claims
+              to belong. A planner, then, need not be merely a function from history to action. It can be a
+              function from <em>well-typed</em> histories to actions whose obligations are partly settled in advance.
             </p>
             <p>
-              The conceptual gain for world models is immediate. Latent state no longer needs to be a bag of
-              tensors floating in trust. It can be recast as a proof-carrying state: observations with lineage,
-              rewards with admissibility conditions, action proposals with budget witnesses, and rollouts whose
-              compositional steps preserve formally stated invariants.
+              For world models, the gain is immediate. Latent state no longer has to drift about as a sealed bag of
+              tensors sustained by faith. It can be recast as a state with lineage, conditions of use, and preserved
+              guarantees—a memory that knows not only what it contains, but why it may be trusted.
             </p>
           </section>
 
           <section class="section" aria-labelledby="pcm-bridge">
             <p class="kicker">The Rocq bridge</p>
-            <h2 id="pcm-bridge">Why <code>/fcsl-pcm</code> matters: partial commutative monoids as a semantics of resource</h2>
+            <h2 id="pcm-bridge">Partial commutative monoids as a semantics of resource</h2>
             <p>
-              The local <code>/fcsl-pcm</code> directory gives this vision a disciplined substrate. Its README describes the
-              project as a formalization of partial commutative monoids, or PCMs, for use in separation logic and
-              the verification of pointer-manipulating sequential and concurrent programs. If that sounds remote
-              from machine learning, it is only because most ML systems have not yet learned to describe their own
-              resources with this degree of care.
+              To see how this sterner imagination might work, it helps to borrow a grammar from formal verification:
+              partial commutative monoids, or PCMs. They arise where one must reason about pieces of state that may
+              be combined only when they truly belong together. If that sounds distant from machine learning, it is
+              mostly because machine learning has been allowed, for so long, to speak loosely about its own
+              resources.
             </p>
             <p>
-              In <code>pcm/pcm.v</code>, the library defines the core algebra: a notion of validity, a partial join,
-              a unit element, and proofs that the join is commutative and associative where defined. This is a
-              language for talking about pieces of state that can be combined only when they are compatible. In
-              <code>pcm/heap.v</code>, heaps are modeled as disjoint fragments of memory. In <code>pcm/natmap.v</code>,
-              histories and maps over non-zero naturals become compositional structures that support reasoning
-              about traces, ownership, and ordered records.
+              The algebra is spare and exacting. There is a notion of validity, a way of joining compatible pieces,
+              a neutral element, and rules that guarantee composition behaves as advertised. From that small kit one
+              can describe memory as separable fragments, histories as traces that accumulate without confusion, and
+              records that combine lawfully only under stated conditions. It is, in effect, a language for speaking
+              about state without smudging its edges.
             </p>
             <p>
-              That is precisely the sort of mathematics a serious world model lacks. A learned simulator usually
-              knows how to compose predictions numerically. It rarely knows how to compose responsibilities.
-              PCMs offer a way to make resource boundaries first-class: which observations are owned by which
-              subsystem, which trace fragments may be combined, which cached beliefs are mutually compatible, and
-              when a planner is attempting to join states that should remain separate.
+              That is precisely what a serious world model tends to lack. A learned simulator knows how to combine
+              predictions numerically; it is far less fluent in combining responsibilities. PCMs suggest a way to
+              make boundaries first-class: which observations belong where, which trace fragments may be joined,
+              which cached beliefs are compatible, and when the system is trying to merge things that should have
+              remained apart.
             </p>
           </section>
 
@@ -499,9 +504,8 @@
             <p class="kicker">Illustrative Rocq sketches</p>
             <h2 id="rocq-samples">Small constructive examples from the ground up</h2>
             <p>
-              The snippets below are intentionally small and illustrative. They are written in Rocq style, borrowing
-              the vocabulary of <code>/fcsl-pcm</code> to show how a world model can be described as a proof-carrying
-              object rather than a free-floating predictor.
+              The snippets below are intentionally small. They are less blueprints than glimpses—little windows onto
+              a style of thought in which a model is not merely predictive, but answerable.
             </p>
 
             <div>
@@ -526,12 +530,12 @@ End TypedWorld.</code></pre>
             </div>
 
             <p>
-              The important move is not syntactic but philosophical. A world model is defined together with its
-              preservation lemmas. One does not bolt safety on after the fact; one demands it at the interface.
+              The important move is not syntactic but moral. The model is introduced together with the conditions it
+              must continue to honor. Safety is not appended after the fact. It enters with the cast.
             </p>
 
             <div>
-              <span class="code-label">Sample 2 · A typed rollout trace using histories from <code>natmap</code></span>
+              <span class="code-label">Sample 2 · A typed rollout trace</span>
               <pre class="code-block"><code>From mathcomp Require Import ssreflect ssrbool ssrnat seq.
 From pcm Require Import pcm natmap.
 
@@ -551,9 +555,9 @@ Definition extend_trace (r : rollout) (t reward : nat) :=
             </div>
 
             <p>
-              Here a rollout is not just a sequence. It carries a positive horizon witness, and each extension
-              succeeds only when the history fragment can be validly joined with what is already known. In other
-              words, the trace grows only through compatible evidence.
+              Here a rollout is not just a sequence of events but a sequence with standing. It carries evidence about
+              its horizon, and it grows only when the next fragment can be joined, cleanly and lawfully, to what is
+              already known.
             </p>
 
             <div>
@@ -576,10 +580,9 @@ Qed.</code></pre>
             </div>
 
             <p>
-              The exact engineering boundary in a deployed ML system would be richer than this toy example, but
-              the pattern is already visible: sensing, caching, and actuation can be represented as resource
-              transitions with explicit side conditions. A world model that issues an action could be required to
-              prove that it owns the facts on which that action depends.
+              A deployed system would, of course, be more elaborate than this toy example. Still, the pattern is
+              plain enough: sensing, caching, and acting can be treated as resource transitions with visible terms.
+              An action need not rest on anonymous confidence. It can be required to show its receipts.
             </p>
           </section>
 
@@ -587,20 +590,17 @@ Qed.</code></pre>
             <p class="kicker">Putting the ideas together</p>
             <h2 id="fusion">How dependent type theory could give world models new purpose</h2>
             <p>
-              The marriage of these two directories—<code>/world_models</code> for learned predictive structure and
-              <code>/fcsl-pcm</code> for proof-oriented resource composition—suggests a world model with a more serious
-              civic life. Not merely a predictor of pixels. Not merely a scorer of rewards. Rather, a system that
-              can say: this latent state is assembled from legitimate fragments; this imagined trajectory respects
-              ownership and budget constraints; this action depends only on observations whose provenance is still
-              valid; this explanation is not a retrospective story but a checked witness.
+              Taken together, these traditions suggest a world model with a more serious civic life. Not merely a
+              predictor of pixels. Not merely a scorer of rewards. Rather, a system able to say: this state was
+              assembled lawfully; this imagined trajectory respects the limits under which it was formed; this action
+              depends only on observations whose standing is still intact; this explanation is not a retrospective
+              story but a checked witness.
             </p>
             <p>
-              Such a model would be especially powerful in settings where the relevant environment is partly
-              social or institutional: multi-agent operations, data pipelines, policy-constrained automation,
-              secure tool use, or financial execution. In these domains, the world is not just physics. It is a
-              fabric of permissions, scopes, obligations, and revocations. Dependent typing is well suited to that
-              fabric because it can express states whose legality depends on values and histories, not just on
-              nominal schemas.
+              Such a model would be especially powerful wherever the world is made not only of physics but of
+              permissions, scopes, obligations, and revocations—multi-agent operations, data systems,
+              policy-constrained automation, secure tool use, financial execution. In such settings, legality is not
+              an afterthought. It is part of the environment.
             </p>
           </section>
 
@@ -611,17 +611,17 @@ Qed.</code></pre>
               <article class="mini-card">
                 <h3>Typed provenance</h3>
                 <p>
-                  Observations, embeddings, tool outputs, and retrieved artifacts can carry machine-checked
-                  provenance constraints. A planner can then be forbidden, by construction, from acting on data
-                  whose origin or scope is uncertified.
+                  Observations, retrieved artifacts, and tool outputs can carry machine-checked provenance. A
+                  planner can then be barred, by construction, from acting on material whose origin or scope is not
+                  in order.
                 </p>
               </article>
               <article class="mini-card">
                 <h3>Compositional isolation</h3>
                 <p>
-                  PCM-style joins make incompatible resources explicit. That offers a formal language for
-                  separating secrets, tenants, model contexts, and temporary capabilities before they become a
-                  silent blob inside a latent state.
+                  PCM-style joins make incompatibility explicit. They offer a formal language for keeping secrets,
+                  tenants, contexts, and temporary capabilities separate before they dissolve into one mute latent
+                  blur.
                 </p>
               </article>
               <article class="mini-card">
@@ -634,17 +634,15 @@ Qed.</code></pre>
               <article class="mini-card">
                 <h3>More legible failures</h3>
                 <p>
-                  When a proof obligation cannot be discharged, the system has a crisp reason to stop. That turns
-                  certain classes of security failure from murky postmortems into immediate type errors or failed
-                  joins.
+                  When a proof obligation cannot be discharged, the system has a crisp reason to stop. Certain
+                  failures that would otherwise become murky postmortems can instead arrive as immediate refusals.
                 </p>
               </article>
             </div>
             <p>
-              The practical result is not invulnerability. It is a different failure surface. Instead of hoping
-              that monitoring will notice dangerous behavior after a model has improvised it, one can pre-structure
-              the space of representable and executable behaviors. In security work, that shift—from detection to
-              construction—is often the whole game.
+              None of this amounts to invulnerability. It amounts to a different kind of discipline. Instead of
+              hoping that monitoring will catch dangerous behavior after the fact, one begins to shape in advance
+              the kinds of behavior the system is even permitted to represent and execute.
             </p>
           </section>
 
@@ -652,29 +650,22 @@ Qed.</code></pre>
             <p class="kicker">Closing</p>
             <h2 id="closing">A stricter imagination</h2>
             <p>
-              World models began as a way to let machines picture the road ahead. Dependent type theory offers a
-              way to insist that the road, the traveler, and the permission to travel are all described in the
-              same language. The combination is appealing not because it makes AI systems less ambitious, but
-              because it makes their ambition answerable.
+              World models began as a way to let machines picture the road ahead. Dependent type theory suggests
+              that the road, the traveler, and the permission to travel might belong to the same description. The
+              attraction of that union is not that it makes AI less ambitious. It is that it makes ambition
+              answerable.
             </p>
             <p>
-              A dependently typed world model would not prevent every operational failure, nor abolish the need for
-              policy, monitoring, and human judgment. But it could force more of an AI system's assumptions into
-              machine-checked form. And in that sense it is plausible that some high-profile exfiltration-style
-              episodes in the broader ecosystem—including incidents discussed around OpenAI such as the
-              ExploitGym Hugging Face exfiltration—might have been harder to stage, easier to detect at the point
-              of action, or impossible to justify within the typed boundary of the system itself.
+              A dependently typed world model would not abolish error, policy, or judgment. It would simply demand
+              that more of a system's assumptions appear in public, in machine-checked form. And that may be the
+              most compelling promise here: not perfect foresight, but a machine imagination less free to wander and
+              more obliged to answer for what it knows.
             </p>
           </section>
         </div>
       </main>
 
       <footer>
-        <p class="citation">
-          Reference: local examples in <code>/world_models</code> and <code>/fcsl-pcm</code>, including
-          <code>planners/planners.py</code>, <code>simulate/simulate.py</code>, <code>pcm/pcm.v</code>,
-          <code>pcm/heap.v</code>, and <code>pcm/natmap.v</code>.
-        </p>
         <p class="citation">
           Explore: <a href="/">Home</a> · <a href="/turing.html">How Turing Works</a> ·
           <a href="/world_model.html">Dependently Typed World Models</a> ·
