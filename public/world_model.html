@@ -474,22 +474,60 @@
             </p>
           </section>
 
+          <section class="section" aria-labelledby="gentle-bridge">
+            <p class="kicker">A gentler bridge</p>
+            <h2 id="gentle-bridge">First, teach the model to keep its own receipts</h2>
+            <p>
+              Before we ask a model to reason about sprawling systems, we can ask something smaller and more human of
+              it: do not make claims you cannot carry. If a plan says it lasts five steps, let those five steps be
+              present. If a context says it is authorized, let that authorization arrive in the same bundle. In Rocq,
+              this lands less like a metaphysical leap than like old-fashioned editorial discipline.
+            </p>
+            <p>
+              Once that habit takes hold, the mood of the system changes. Safety is no longer a memo taped to the side
+              of the pipeline, waiting for an auditor at the end. It becomes part of what the object <em>is</em>. The
+              center of gravity shifts from "verify later" to "build it so that certain mistakes never come into being."
+            </p>
+
+            <div>
+              <span class="code-label">A small Rocq sketch · State with a checked horizon</span>
+              <pre class="code-block"><code>From Coq Require Import List Arith.
+Import ListNotations.
+
+Record CheckedRollout := {
+  horizon : nat;
+  actions : list nat;
+  horizon_matches : length actions = horizon
+}.
+
+Definition single_action (a : nat) : CheckedRollout :=
+  {| horizon := 1;
+     actions := [a];
+     horizon_matches := eq_refl |}.</code></pre>
+            </div>
+
+            <p>
+              It is a tiny example, almost childlike, and that is precisely why it matters. It shows, in miniature,
+              how claims can be made explicit and inseparable from state itself. And once we can do that for one
+              object, we are ready for the next question: what happens when many such objects must be combined without
+              losing their boundaries?
+            </p>
+          </section>
+
           <section class="section" aria-labelledby="pcm-bridge">
             <p class="kicker">The Rocq bridge</p>
             <h2 id="pcm-bridge">Partial commutative monoids as a semantics of resource</h2>
             <p>
-              To see how this sterner imagination might work, it helps to borrow a grammar from formal verification:
-              partial commutative monoids, or PCMs. They arise where one must reason about pieces of state that may
-              be combined only when they truly belong together. If that sounds distant from machine learning, it is
-              mostly because machine learning has been allowed, for so long, to speak loosely about its own
-              resources.
+              Once that introductory discipline is in place, the next question arrives naturally: what happens when
+              the state is no longer singular, but fragmented across tools, memories, caches, and actors? This is the
+              moment to borrow a grammar from formal verification: partial commutative monoids, or PCMs. They arise
+              where one must reason about pieces of state that may be combined only when they truly belong together.
             </p>
             <p>
               The algebra is spare and exacting. There is a notion of validity, a way of joining compatible pieces,
-              a neutral element, and rules that guarantee composition behaves as advertised. From that small kit one
+              a neutral element, and rules that guarantee composition behaves as advertised. From that compact kit one
               can describe memory as separable fragments, histories as traces that accumulate without confusion, and
-              records that combine lawfully only under stated conditions. It is, in effect, a language for speaking
-              about state without smudging its edges.
+              records that combine lawfully only under stated conditions.
             </p>
             <p>
               That is precisely what a serious world model tends to lack. A learned simulator knows how to combine
