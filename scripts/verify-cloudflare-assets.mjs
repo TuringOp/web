@@ -7,6 +7,7 @@ const requiredPaths = [
   'public',
   'public/index.html',
   'public/turing.html',
+  'public/world_model.html',
   'public/robots.txt',
   'public/sitemap.xml',
   'worker.js',
