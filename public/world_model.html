@@ -362,9 +362,10 @@
           A world model is, at heart, a machine for rehearsing reality. It gathers the rush of perception,
           compresses it into a private account of what matters, and then asks a question that feels at once
           mechanical and strangely human: if I do this next, what sort of world will greet me? One can see why
-          the field has fallen for the phrase. It promises not just calculation but poise. Yet the trouble with
-          machine imagination is that it so often becomes self-impressed. Dependent type theory offers a sterner
-          bargain—an imagination made to travel with its papers.
+          the field has fallen in love with the phrase. It promises not just calculation but poise. The trouble
+          is that machine imagination, left to its own devices, so easily becomes self-impressed—certain of its
+          futures, incurious about its limits. Dependent type theory offers a sterner bargain: an imagination
+          made to travel with its papers.
         </p>
 
         <div class="article">
@@ -372,26 +373,26 @@
             <p class="kicker">World models</p>
             <h2 id="broad-strokes">The broad strokes: a history of machine imagination</h2>
             <p>
-              The phrase <em>world model</em> has led several lives. In the age of control theory, it belonged to
-              equations that marched a system from one instant to the next. In cognitive science, it suggested an
-              inner picture of the world, the quiet mental staging ground on which creatures decide whether a rustle
-              in the grass is wind, prey, or danger. In machine learning, the phrase has lately become more
-              theatrical still. A world model is now often a learned simulator, a synthetic sense of how scenes,
-              rewards, and hidden dynamics unfold over time.
+              The phrase <em>world model</em> has led several lives. In the age of control theory, it named the
+              equations that marched a system from one instant to the next—dry, linear, unimpressed with itself.
+              In cognitive science, it suggested something warmer: an inner picture of the world, the quiet mental
+              staging ground on which creatures decide whether a rustle in the grass is wind, prey, or danger. In
+              machine learning, the phrase has lately grown more theatrical still. A world model is now often a
+              learned simulator—a synthetic sense of how scenes, rewards, and hidden dynamics unfold over time.
             </p>
             <p>
-              The attraction is easy to understand. A system that can imagine futures before it spends a real move
-              in the world may learn faster, plan further, and seem less like a reflex machine than an actor who has
-              at least read the next scene. A world model gives decision-making a stage. It lets an agent try on
-              possible futures, discard the awkward ones, and proceed with the unnerving calm of something that has
-              already rehearsed the moment.
+              The attraction is easy to understand. A system that can imagine futures before spending a real move
+              may learn faster, plan further, and feel less like a reflex machine than an actor who has at least
+              read the next scene. A world model gives decision-making a stage. It lets an agent try on possible
+              futures, discard the awkward ones, and proceed with the unnerving calm of something that has already
+              rehearsed the moment.
             </p>
             <p>
               Their glamour comes from a double promise. One promise is practical: better performance, fewer wasted
-              actions, more foresight. The other is interpretive. A world model seems to offer a peek at what the
-              system believes the world to be. If it can reconstruct the scene ahead, anticipate the arc of reward,
-              and carry a durable inner state from moment to moment, then it begins to look less like a statistical
-              gadget and more like a point of view.
+              actions, more foresight. The other is interpretive—and here things get interesting. A world model
+              seems to offer a peek at what the system believes the world to be. If it can reconstruct the scene
+              ahead, anticipate the arc of reward, and carry a durable inner state from moment to moment, then it
+              begins to look less like a statistical gadget and more like a point of view.
             </p>
           </section>
 
@@ -457,36 +458,41 @@
             <h2 id="dependent-types">How dependent types change the conversation</h2>
             <p>
               Dependent type theory begins from a severe but fruitful premise: the shape of a thing may depend on
-              what the thing actually is, and proof need not arrive afterward like a chaperone. It can travel with
-              the program from the start. Instead of keeping a latent state and hoping later to certify it, one can
-              keep the state together with evidence that it has been properly formed.
+              what the thing actually is, and proof need not arrive afterward like a chaperone. It travels with the
+              program from the start. Rather than keeping a latent state and hoping to certify it later, one can
+              keep the state together with evidence that it was properly formed—evidence that is part of the thing
+              itself, not a note pinned to the outside.
             </p>
             <p>
-              In a system such as Rocq, software becomes constructive in the plainest meaning of the word. An object
-              is not just a value; it may be a value accompanied by the evidence required to belong where it claims
-              to belong. A planner, then, need not be merely a function from history to action. It can be a
-              function from <em>well-typed</em> histories to actions whose obligations are partly settled in advance.
+              In Rocq, software becomes constructive in the most literal sense. An object is not just a value; it
+              may be a value accompanied by the credentials required to belong where it claims to belong. A planner,
+              then, need not be merely a function from history to action. It can be a function from
+              <em>well-typed</em> histories to actions whose obligations are partly settled in advance—before
+              anything runs, before anything fails.
             </p>
             <p>
-              For world models, the gain is immediate. Latent state no longer has to drift about as a sealed bag of
-              tensors sustained by faith. It can be recast as a state with lineage, conditions of use, and preserved
-              guarantees—a memory that knows not only what it contains, but why it may be trusted.
+              For world models, the gain is immediate and, honestly, a little humbling in hindsight. Latent state
+              no longer has to drift about as a sealed bag of tensors sustained by faith. It can be recast as a
+              state with lineage, conditions of use, and preserved guarantees—a memory that knows not only what it
+              contains, but why it may be trusted.
             </p>
           </section>
 
           <section class="section" aria-labelledby="gentle-bridge">
-            <p class="kicker">A gentler bridge</p>
+            <p class="kicker">A gentle bridge</p>
             <h2 id="gentle-bridge">First, teach the model to keep its own receipts</h2>
             <p>
-              Before we ask a model to reason about sprawling systems, we can ask something smaller and more human of
-              it: do not make claims you cannot carry. If a plan says it lasts five steps, let those five steps be
-              present. If a context says it is authorized, let that authorization arrive in the same bundle. In Rocq,
-              this lands less like a metaphysical leap than like old-fashioned editorial discipline.
+              Before any of the harder machinery enters, it helps to ask something small and almost obvious: do not
+              make a claim you cannot carry with you. If a plan says it lasts five steps, let those five steps be
+              present and countable in the same object. If a context says it is authorized, let that authorization
+              travel in the same bundle rather than live in a comment somewhere upstream. In Rocq, this discipline
+              arrives less as a philosophical revelation than as a very firm house rule.
             </p>
             <p>
-              Once that habit takes hold, the mood of the system changes. Safety is no longer a memo taped to the side
-              of the pipeline, waiting for an auditor at the end. It becomes part of what the object <em>is</em>. The
-              center of gravity shifts from "verify later" to "build it so that certain mistakes never come into being."
+              And the surprising thing is how much changes once you hold to it. Safety stops being a memo taped to
+              the outside of the pipeline, waiting on some future auditor. It becomes part of what the thing actually
+              <em>is</em>—woven into its structure rather than appended to its record. The mood of the whole
+              enterprise shifts: from "we will verify this later" to "we have built it so certain errors cannot arise."
             </p>
 
             <div>
@@ -508,9 +514,10 @@ Definition single_action (a : nat) : CheckedRollout :=
 
             <p>
               It is a tiny example, almost childlike, and that is precisely why it matters. It shows, in miniature,
-              how claims can be made explicit and inseparable from state itself. And once we can do that for one
-              object, we are ready for the next question: what happens when many such objects must be combined without
-              losing their boundaries?
+              that claims about state can be made explicit and inseparable from the state itself—not asserted
+              somewhere above, not checked somewhere below, but simply present, by construction, always. And once
+              that works for one object, we are ready for the harder question: what happens when many such objects
+              must be combined without losing their edges?
             </p>
           </section>
 
@@ -518,23 +525,25 @@ Definition single_action (a : nat) : CheckedRollout :=
             <p class="kicker">The Rocq bridge</p>
             <h2 id="pcm-bridge">Partial commutative monoids as a semantics of resource</h2>
             <p>
-              Once that introductory discipline is in place, the next question arrives naturally: what happens when
-              the state is no longer singular, but fragmented across tools, memories, caches, and actors? This is the
-              moment to borrow a grammar from formal verification: partial commutative monoids, or PCMs. They arise
-              where one must reason about pieces of state that may be combined only when they truly belong together.
+              Once that introductory discipline is in place, the harder question arrives on its own: what happens
+              when the state is no longer a tidy singular thing, but scattered across tools, memories, caches, and
+              collaborating actors? Here is where we reach for a grammar from formal verification that was built
+              exactly for this situation: partial commutative monoids, or PCMs. They arise wherever one needs to
+              reason about fragments of state that may be joined only when they genuinely belong together.
             </p>
             <p>
-              The algebra is spare and exacting. There is a notion of validity, a way of joining compatible pieces,
-              a neutral element, and rules that guarantee composition behaves as advertised. From that compact kit one
-              can describe memory as separable fragments, histories as traces that accumulate without confusion, and
-              records that combine lawfully only under stated conditions.
+              The algebra is spare and exacting—almost austere. A notion of validity. A way of joining compatible
+              pieces. A neutral element that disappears on contact. Rules that guarantee composition behaves the same
+              way every time. From that compact kit one can describe memory as separable fragments, histories as
+              traces that accumulate without tangling, and records that combine lawfully only under explicit
+              conditions.
             </p>
             <p>
-              That is precisely what a serious world model tends to lack. A learned simulator knows how to combine
-              predictions numerically; it is far less fluent in combining responsibilities. PCMs suggest a way to
-              make boundaries first-class: which observations belong where, which trace fragments may be joined,
-              which cached beliefs are compatible, and when the system is trying to merge things that should have
-              remained apart.
+              That is precisely the fluency a serious world model tends to lack. A learned simulator knows how to
+              blend predictions numerically; it is far less comfortable combining responsibilities. PCMs offer a way
+              to make boundaries first-class: which observations belong where, which trace fragments may be joined,
+              which cached beliefs are mutually compatible, and—crucially—when the system is reaching for something
+              that should have stayed separate.
             </p>
           </section>
 
@@ -542,8 +551,9 @@ Definition single_action (a : nat) : CheckedRollout :=
             <p class="kicker">Illustrative Rocq sketches</p>
             <h2 id="rocq-samples">Small constructive examples from the ground up</h2>
             <p>
-              The snippets below are intentionally small. They are less blueprints than glimpses—little windows onto
-              a style of thought in which a model is not merely predictive, but answerable.
+              The snippets below are intentionally small—less blueprints than glimpses, little windows onto a style
+              of thought in which a model is not merely predictive but answerable. Each one does something modest.
+              Together they suggest what it might feel like to build a world model that keeps its books honestly.
             </p>
 
             <div>
@@ -568,8 +578,8 @@ End TypedWorld.</code></pre>
             </div>
 
             <p>
-              The important move is not syntactic but moral. The model is introduced together with the conditions it
-              must continue to honor. Safety is not appended after the fact. It enters with the cast.
+              The important move here is not syntactic but moral. The model is introduced together with the
+              conditions it must continue to honor. Safety is not appended after the fact. It enters with the cast.
             </p>
 
             <div>
@@ -593,9 +603,9 @@ Definition extend_trace (r : rollout) (t reward : nat) :=
             </div>
 
             <p>
-              Here a rollout is not just a sequence of events but a sequence with standing. It carries evidence about
-              its horizon, and it grows only when the next fragment can be joined, cleanly and lawfully, to what is
-              already known.
+              Here a rollout is not just a sequence of events but a sequence with standing. It carries evidence
+              about its own horizon, and it grows only when the next fragment can be joined, cleanly and lawfully,
+              to what is already known. There is something almost contractual about it.
             </p>
 
             <div>
@@ -618,9 +628,9 @@ Qed.</code></pre>
             </div>
 
             <p>
-              A deployed system would, of course, be more elaborate than this toy example. Still, the pattern is
-              plain enough: sensing, caching, and acting can be treated as resource transitions with visible terms.
-              An action need not rest on anonymous confidence. It can be required to show its receipts.
+              A real system would be more elaborate than these sketches, obviously. But the pattern is clear enough:
+              sensing, caching, and acting can be treated as resource transitions with visible terms. An action
+              need not rest on anonymous confidence. It can be asked to show its receipts.
             </p>
           </section>
 
@@ -629,16 +639,17 @@ Qed.</code></pre>
             <h2 id="fusion">How dependent type theory could give world models new purpose</h2>
             <p>
               Taken together, these traditions suggest a world model with a more serious civic life. Not merely a
-              predictor of pixels. Not merely a scorer of rewards. Rather, a system able to say: this state was
+              predictor of pixels—not merely a scorer of rewards. Rather, a system able to say: this state was
               assembled lawfully; this imagined trajectory respects the limits under which it was formed; this action
               depends only on observations whose standing is still intact; this explanation is not a retrospective
               story but a checked witness.
             </p>
             <p>
               Such a model would be especially powerful wherever the world is made not only of physics but of
-              permissions, scopes, obligations, and revocations—multi-agent operations, data systems,
+              permissions, scopes, obligations, and revocations—multi-agent operations, data-intensive pipelines,
               policy-constrained automation, secure tool use, financial execution. In such settings, legality is not
-              an afterthought. It is part of the environment.
+              an afterthought. It is part of the environment, always has been, and a well-designed system should
+              know that.
             </p>
           </section>
 
@@ -678,9 +689,10 @@ Qed.</code></pre>
               </article>
             </div>
             <p>
-              None of this amounts to invulnerability. It amounts to a different kind of discipline. Instead of
-              hoping that monitoring will catch dangerous behavior after the fact, one begins to shape in advance
-              the kinds of behavior the system is even permitted to represent and execute.
+              None of this amounts to invulnerability. It amounts to a different kind of discipline—one that begins
+              earlier and expects more. Instead of hoping that monitoring will catch dangerous behavior after the
+              fact, one begins to shape in advance the kinds of behavior the system is even permitted to represent
+              and execute.
             </p>
           </section>
 
@@ -689,15 +701,15 @@ Qed.</code></pre>
             <h2 id="closing">A stricter imagination</h2>
             <p>
               World models began as a way to let machines picture the road ahead. Dependent type theory suggests
-              that the road, the traveler, and the permission to travel might belong to the same description. The
-              attraction of that union is not that it makes AI less ambitious. It is that it makes ambition
+              that the road, the traveler, and the permission to travel might all belong to the same description.
+              The attraction of that union is not that it makes AI less ambitious. It is that it makes ambition
               answerable.
             </p>
             <p>
               A dependently typed world model would not abolish error, policy, or judgment. It would simply demand
-              that more of a system's assumptions appear in public, in machine-checked form. And that may be the
-              most compelling promise here: not perfect foresight, but a machine imagination less free to wander and
-              more obliged to answer for what it knows.
+              that more of a system's assumptions appear in public, in machine-checked form. That may turn out to be
+              the most human thing we could ask of a machine: not to be infallible, but to be honest about what it
+              knows—and to carry the proof.
             </p>
           </section>
         </div>
