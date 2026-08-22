@@ -855,7 +855,8 @@ Qed.</code></pre>
           audio.src = `data:audio/wav;base64,${payload.audio_wav_base64}`;
           const checkpoint = payload.model && payload.model.checkpoint ? payload.model.checkpoint.split("/").pop() : "unknown";
           const bpm = payload.controls && payload.controls.bpm ? payload.controls.bpm : "?";
-          status.textContent = `Ready: ${bpm} BPM track generated from your prompt · ${checkpoint}`;
+          const secs = payload.generation && payload.generation.duration_sec ? payload.generation.duration_sec : "?";
+          status.textContent = `Ready: ${bpm} BPM \u00b7 ${secs}s loop-ready track \u00b7 ${checkpoint}`;
           audio.play().catch(() => {
             // Autoplay can fail on some browsers; controls remain available.
           });
