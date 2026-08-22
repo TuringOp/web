@@ -217,60 +217,6 @@
         gap: 1.5rem;
       }
 
-      .listener-panel {
-        max-width: 76ch;
-        margin-top: 1.1rem;
-        padding: 0.9rem 1rem 1rem;
-        background: var(--panel);
-        border-top: 1px solid var(--line-soft);
-        border-bottom: 1px solid var(--line-soft);
-      }
-
-      .listener-panel p {
-        margin: 0;
-        max-width: none;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-
-      .listener-controls {
-        margin-top: 0.65rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 0.55rem;
-      }
-
-      .listener-controls input,
-      .listener-controls button {
-        border: 1px solid var(--line-soft);
-        background: #f5faf4;
-        color: var(--text);
-        font: inherit;
-        font-size: 0.92rem;
-        padding: 0.5rem 0.6rem;
-      }
-
-      .listener-controls button {
-        cursor: pointer;
-        font-weight: 600;
-      }
-
-      .listener-controls button:disabled {
-        opacity: 0.65;
-        cursor: wait;
-      }
-
-      .listener-meta {
-        margin-top: 0.55rem;
-        font-size: 0.8rem;
-        color: var(--muted);
-      }
-
-      .listener-audio {
-        width: 100%;
-        margin-top: 0.55rem;
-      }
-
       .section {
         display: grid;
         gap: 0.95rem;
@@ -421,22 +367,6 @@
           futures, incurious about its limits. Dependent type theory offers a sterner bargain: an imagination
           made to travel with its papers.
         </p>
-
-        <section class="listener-panel" aria-label="Generate a listening track">
-          <div class="listener-controls">
-            <input
-              id="prompt-input"
-              type="text"
-              name="prompt"
-              maxlength="160"
-              placeholder="e.g., 80's Tokyo Drift"
-              aria-label="Music prompt"
-            />
-            <button id="prompt-generate" type="button" disabled>Generate</button>
-          </div>
-          <p id="prompt-status" class="listener-meta" role="status" aria-live="polite"></p>
-          <audio id="prompt-audio" class="listener-audio" controls preload="none"></audio>
-        </section>
 
         <div class="article">
           <section class="section" aria-labelledby="broad-strokes">
@@ -793,91 +723,6 @@ Qed.</code></pre>
         </p>
       </footer>
     </div>
-    <script>
-    (function () {
-      const input = document.getElementById("prompt-input");
-      const button = document.getElementById("prompt-generate");
-      const status = document.getElementById("prompt-status");
-      const audio = document.getElementById("prompt-audio");
-
-      if (!input || !button || !status || !audio) {
-        return;
-      }
-
-      async function healthcheck() {
-        status.textContent = "Checking music backend...";
-        try {
-          const response = await fetch("/api/music/healthz", { method: "GET" });
-          const contentType = (response.headers.get("content-type") || "").toLowerCase();
-          let payload = {};
-          if (contentType.includes("application/json")) {
-            payload = await response.json();
-          }
-          if (!response.ok || !payload.ok) {
-            throw new Error(payload.error || `backend unavailable (status ${response.status})`);
-          }
-          status.textContent = "Music backend ready.";
-          button.disabled = false;
-        } catch (error) {
-          status.textContent = `Music backend unavailable: ${error.message}`;
-          button.disabled = true;
-        }
-      }
-
-      async function generateTrack() {
-        const prompt = input.value.trim();
-        if (!prompt) {
-          status.textContent = "Please enter a prompt first.";
-          return;
-        }
-
-        button.disabled = true;
-        status.textContent = "Generating a short track...";
-
-        try {
-          const response = await fetch("/api/music/generate", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ prompt })
-          });
-          const contentType = (response.headers.get("content-type") || "").toLowerCase();
-          let payload;
-          if (contentType.includes("application/json")) {
-            payload = await response.json();
-          } else {
-            await response.text();
-            throw new Error(`upstream backend returned non-JSON response (status ${response.status})`);
-          }
-          if (!response.ok) {
-            throw new Error(payload.error || `generation failed (status ${response.status})`);
-          }
-
-          audio.src = `data:audio/wav;base64,${payload.audio_wav_base64}`;
-          const checkpoint = payload.model && payload.model.checkpoint ? payload.model.checkpoint.split("/").pop() : "unknown";
-          const bpm = payload.controls && payload.controls.bpm ? payload.controls.bpm : "?";
-          const secs = payload.generation && payload.generation.duration_sec ? payload.generation.duration_sec : "?";
-          status.textContent = `Ready: ${bpm} BPM \u00b7 ${secs}s loop-ready track \u00b7 ${checkpoint}`;
-          audio.play().catch(() => {
-            // Autoplay can fail on some browsers; controls remain available.
-          });
-        } catch (error) {
-          status.textContent = `Could not generate track: ${error.message}`;
-        } finally {
-          button.disabled = false;
-        }
-      }
-
-      button.addEventListener("click", generateTrack);
-      input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          generateTrack();
-        }
-      });
-
-      healthcheck();
-    })();
-    </script>
   </body>
 </html>
 
