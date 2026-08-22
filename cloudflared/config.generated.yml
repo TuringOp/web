@@ -1,0 +1,9 @@
+# Generated shape expected by npm run tunnel:* commands.
+# Replace tunnel + credentials-file with values from `cloudflared tunnel create`.
+tunnel: <replace-with-tunnel-id>
+credentials-file: ~/.cloudflared/<replace-with-tunnel-id>.json
+ingress:
+  - hostname: music-api.turingops.ai
+    service: http://127.0.0.1:8788
+  - service: http_status:404
+

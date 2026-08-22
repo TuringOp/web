@@ -9,6 +9,7 @@ A small static two-page marketing site for Turing, configured for Cloudflare Wor
 - `public/robots.txt` — crawler directives and sitemap location
 - `public/sitemap.xml` — sitemap entry for `https://turingops.ai/`
 - `worker.js` — Cloudflare Worker for static assets plus `/api/music/generate` and `/api/music/healthz` proxy routes
+- `cloudflared/config.template.yml` — template for exposing local/backend API at `music-api.turingops.ai`
 - `wrangler.toml` — Cloudflare Workers configuration
 - `package.json` — local scripts for dev, config checking, and deployment
 
@@ -59,6 +60,16 @@ npm run dev
 ```
 
 `wrangler.toml` sets `MUSIC_JEPA_API_URL` to `https://music-api.turingops.ai` by default.
+
+### Cloudflare Tunnel helper commands
+
+After generating `cloudflared/config.generated.yml` from `music-jepa/scripts/run_retrain_eval_serve.py --setup-tunnel --skip-train-eval --skip-serve`:
+
+```sh
+cd /Users/jrule/git/music/web
+npm run tunnel:validate
+npm run tunnel:run
+```
 
 ## Deploy to Cloudflare Workers
 

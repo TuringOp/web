@@ -1,0 +1,11 @@
+# Copy this file to config.generated.yml or pass a custom --cloudflared-config-out path.
+# Fill tunnel + credentials-file after running:
+#   cloudflared tunnel create <name>
+#
+tunnel: <replace-with-tunnel-id>
+credentials-file: ~/.cloudflared/<replace-with-tunnel-id>.json
+ingress:
+  - hostname: music-api.turingops.ai
+    service: http://127.0.0.1:8788
+  - service: http_status:404
+
