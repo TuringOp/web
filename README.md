@@ -8,7 +8,7 @@ A small static two-page marketing site for Turing, configured for Cloudflare Wor
 - `public/turing.html` — product detail page for Turing
 - `public/robots.txt` — crawler directives and sitemap location
 - `public/sitemap.xml` — sitemap entry for `https://turingops.ai/`
-- `worker.js` — minimal Cloudflare Worker that serves static assets
+- `worker.js` — Cloudflare Worker for static assets plus `/api/generate-track` proxy
 - `wrangler.toml` — Cloudflare Workers configuration
 - `package.json` — local scripts for dev, config checking, and deployment
 
@@ -32,6 +32,26 @@ npm run dev
 ```
 
 Wrangler will print a local preview URL, typically <http://127.0.0.1:8787>.
+
+### Interactive music prompt on `world_model.html`
+
+The page includes a small prompt box that calls `/api/generate-track`.
+
+1. Start the Python backend in `music-jepa/` (expects a trained checkpoint):
+
+```sh
+cd /Users/jrule/git/music/music-jepa
+PYTHONPATH=src python3 scripts/serve_prompt_api.py --config configs/open_midi.yaml --ckpt artifacts/open_midi.pt --port 8788
+```
+
+2. Start the site worker in `web/`:
+
+```sh
+cd /Users/jrule/git/music/web
+npm run dev
+```
+
+`wrangler.toml` sets `MUSIC_JEPA_API_URL` to `http://127.0.0.1:8788` by default.
 
 ## Deploy to Cloudflare Workers
 
