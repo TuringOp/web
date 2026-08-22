@@ -37,11 +37,18 @@ Wrangler will print a local preview URL, typically <http://127.0.0.1:8787>.
 
 The page includes a small prompt box that calls `/api/generate-track`.
 
+Before serving, run the one-command pipeline from `music-jepa`:
+
+```sh
+cd /Users/jrule/git/music/music-jepa
+python3 scripts/run_retrain_eval_serve.py --backend-url https://music-api.turingops.ai
+```
+
 1. Start the Python backend in `music-jepa/` (expects a trained checkpoint):
 
 ```sh
 cd /Users/jrule/git/music/music-jepa
-PYTHONPATH=src python3 scripts/serve_prompt_api.py --config configs/open_midi.yaml --ckpt artifacts/open_midi.pt --port 8788
+PYTHONPATH=src python3 scripts/serve_prompt_api.py --port 8788
 ```
 
 2. Start the site worker in `web/`:
@@ -51,7 +58,7 @@ cd /Users/jrule/git/music/web
 npm run dev
 ```
 
-`wrangler.toml` sets `MUSIC_JEPA_API_URL` to `http://127.0.0.1:8788` by default.
+`wrangler.toml` sets `MUSIC_JEPA_API_URL` to `https://music-api.turingops.ai` by default.
 
 ## Deploy to Cloudflare Workers
 

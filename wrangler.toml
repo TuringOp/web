@@ -7,5 +7,5 @@ binding = "ASSETS"
 directory = "./public"
 
 [vars]
-MUSIC_JEPA_API_URL = "http://127.0.0.1:8788"
+MUSIC_JEPA_API_URL = "https://music-api.turingops.ai"
 
