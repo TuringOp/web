@@ -423,7 +423,6 @@
         </p>
 
         <section class="listener-panel" aria-label="Generate a listening track">
-          <p>Optional: generate a short symbolic tune from a prompt while you read.</p>
           <div class="listener-controls">
             <input
               id="prompt-input"
@@ -433,11 +432,9 @@
               placeholder="e.g., 80's Tokyo Drift"
               aria-label="Music prompt"
             />
-            <button id="prompt-generate" type="button">Generate</button>
+            <button id="prompt-generate" type="button" disabled>Generate</button>
           </div>
-          <p id="prompt-status" class="listener-meta" role="status" aria-live="polite">
-            Enter a prompt to generate a private reading soundtrack.
-          </p>
+          <p id="prompt-status" class="listener-meta" role="status" aria-live="polite"></p>
           <audio id="prompt-audio" class="listener-audio" controls preload="none"></audio>
         </section>
 
@@ -807,6 +804,26 @@ Qed.</code></pre>
         return;
       }
 
+      async function healthcheck() {
+        status.textContent = "Checking music backend...";
+        try {
+          const response = await fetch("/api/music/healthz", { method: "GET" });
+          const contentType = (response.headers.get("content-type") || "").toLowerCase();
+          let payload = {};
+          if (contentType.includes("application/json")) {
+            payload = await response.json();
+          }
+          if (!response.ok || !payload.ok) {
+            throw new Error(payload.error || `backend unavailable (status ${response.status})`);
+          }
+          status.textContent = "Music backend ready.";
+          button.disabled = false;
+        } catch (error) {
+          status.textContent = `Music backend unavailable: ${error.message}`;
+          button.disabled = true;
+        }
+      }
+
       async function generateTrack() {
         const prompt = input.value.trim();
         if (!prompt) {
@@ -818,17 +835,18 @@ Qed.</code></pre>
         status.textContent = "Generating a short track...";
 
         try {
-          const response = await fetch("/api/generate-track", {
+          const response = await fetch("/api/music/generate", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ prompt })
           });
-          const raw = await response.text();
-          let payload = {};
-          try {
-            payload = raw ? JSON.parse(raw) : {};
-          } catch {
-            payload = { error: `backend returned invalid response (status ${response.status})` };
+          const contentType = (response.headers.get("content-type") || "").toLowerCase();
+          let payload;
+          if (contentType.includes("application/json")) {
+            payload = await response.json();
+          } else {
+            await response.text();
+            throw new Error(`upstream backend returned non-JSON response (status ${response.status})`);
           }
           if (!response.ok) {
             throw new Error(payload.error || `generation failed (status ${response.status})`);
@@ -854,6 +872,8 @@ Qed.</code></pre>
           generateTrack();
         }
       });
+
+      healthcheck();
     })();
     </script>
   </body>

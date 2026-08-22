@@ -8,7 +8,7 @@ A small static two-page marketing site for Turing, configured for Cloudflare Wor
 - `public/turing.html` — product detail page for Turing
 - `public/robots.txt` — crawler directives and sitemap location
 - `public/sitemap.xml` — sitemap entry for `https://turingops.ai/`
-- `worker.js` — Cloudflare Worker for static assets plus `/api/generate-track` proxy
+- `worker.js` — Cloudflare Worker for static assets plus `/api/music/generate` and `/api/music/healthz` proxy routes
 - `wrangler.toml` — Cloudflare Workers configuration
 - `package.json` — local scripts for dev, config checking, and deployment
 
@@ -35,7 +35,7 @@ Wrangler will print a local preview URL, typically <http://127.0.0.1:8787>.
 
 ### Interactive music prompt on `world_model.html`
 
-The page includes a small prompt box that calls `/api/generate-track`.
+The page includes a small prompt box that calls `/api/music/generate`.
 
 Before serving, run the one-command pipeline from `music-jepa`:
 
