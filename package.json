@@ -7,7 +7,7 @@
   "scripts": {
     "verify:cloudflare": "node ./scripts/verify-cloudflare-assets.mjs",
     "dev": "wrangler dev",
-    "tunnel:validate": "cloudflared tunnel ingress validate --config ./cloudflared/config.generated.yml",
+    "tunnel:validate": "cloudflared tunnel --config ./cloudflared/config.generated.yml ingress validate",
     "tunnel:run": "cloudflared tunnel --config ./cloudflared/config.generated.yml run music-jepa-api",
     "precheck": "npm run verify:cloudflare",
     "check": "wrangler deploy --dry-run",
