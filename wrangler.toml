@@ -6,6 +6,3 @@ compatibility_date = "2026-06-20"
 binding = "ASSETS"
 directory = "./public"
 
-[vars]
-MUSIC_JEPA_API_URL = "https://music-api.turingops.ai"
-
