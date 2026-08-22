@@ -41,6 +41,24 @@ export default {
         });
       }
 
+      const upstreamType = (apiResponse.headers.get("content-type") || "").toLowerCase();
+      if (!upstreamType.includes("application/json")) {
+        const upstreamText = await apiResponse.text();
+        return new Response(
+          JSON.stringify({
+            error: `upstream backend returned non-JSON response (status ${apiResponse.status})`,
+            upstream: upstreamText.slice(0, 400)
+          }),
+          {
+            status: apiResponse.status,
+            headers: {
+              "content-type": "application/json",
+              "access-control-allow-origin": "*"
+            }
+          }
+        );
+      }
+
       return new Response(apiResponse.body, {
         status: apiResponse.status,
         headers: {

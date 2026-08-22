@@ -439,9 +439,6 @@
             Enter a prompt to generate a private reading soundtrack.
           </p>
           <audio id="prompt-audio" class="listener-audio" controls preload="none"></audio>
-          <p class="listener-meta">
-            Suggestions: "80's Tokyo Drift", "Johnny Cash does Metal", "calm cinematic piano".
-          </p>
         </section>
 
         <div class="article">
@@ -826,9 +823,15 @@ Qed.</code></pre>
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ prompt })
           });
-          const payload = await response.json();
+          const raw = await response.text();
+          let payload = {};
+          try {
+            payload = raw ? JSON.parse(raw) : {};
+          } catch {
+            payload = { error: `backend returned invalid response (status ${response.status})` };
+          }
           if (!response.ok) {
-            throw new Error(payload.error || "generation failed");
+            throw new Error(payload.error || `generation failed (status ${response.status})`);
           }
 
           audio.src = `data:audio/wav;base64,${payload.audio_wav_base64}`;
