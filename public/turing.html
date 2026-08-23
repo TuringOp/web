@@ -238,10 +238,11 @@
       }
 
       .citation {
-        max-width: 72ch;
+        max-width: none;
         font-size: 0.83rem;
         line-height: 1.45;
         color: var(--muted);
+        white-space: nowrap;
       }
 
       .citation a {
@@ -262,6 +263,10 @@
       @media (max-width: 759px) {
         body {
           font-size: 17px;
+        }
+
+        .citation {
+          white-space: normal;
         }
 
         .masthead-row {
