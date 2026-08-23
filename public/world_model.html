@@ -280,6 +280,49 @@
         max-width: none;
       }
 
+      .figure-inline {
+        max-width: 76ch;
+        margin: 0;
+        padding: 1rem;
+        background: var(--panel);
+        border-top: 2px solid var(--line);
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .figure-title {
+        margin: 0 0 0.65rem;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 1.02rem;
+        line-height: 1.3;
+      }
+
+      .figure-grid {
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      .figure-step {
+        padding: 0.55rem 0.6rem;
+        border: 1px solid var(--line-soft);
+        background: var(--panel-strong);
+        font-size: 0.91rem;
+        line-height: 1.45;
+      }
+
+      .figure-arrow {
+        text-align: center;
+        font-size: 0.95rem;
+        line-height: 1;
+        color: var(--muted);
+      }
+
+      .figure-caption {
+        margin-top: 0.7rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
       footer {
         margin-top: calc(var(--space-5) + 0.4rem);
         padding-top: var(--space-3);
@@ -458,6 +501,20 @@
             </div>
           </section>
 
+          <figure class="figure-inline" aria-label="Research agenda stack">
+            <h3 class="figure-title">Figure 1. From distributed craft to shared discipline</h3>
+            <div class="figure-grid">
+              <div class="figure-step">Researchers around the world publish local model fragments, each with its own admissibility claims.</div>
+              <div class="figure-arrow">↓</div>
+              <div class="figure-step">A common Rocq-style check asks whether those fragments can be composed without contradiction.</div>
+              <div class="figure-arrow">↓</div>
+              <div class="figure-step">Only composition-lawful fragments feed the joint embedding pipeline.</div>
+              <div class="figure-arrow">↓</div>
+              <div class="figure-step">The resulting world model becomes both predictive and explicit about what its states are allowed to mean.</div>
+            </div>
+            <figcaption class="figure-caption">An indicative stack for the agenda: learning remains empirical, while composition rules become public and checkable.</figcaption>
+          </figure>
+
           <section class="section" aria-labelledby="dependent-types">
             <p class="kicker">Dependent type theory</p>
             <h2 id="dependent-types">How dependent types change the conversation</h2>
@@ -613,6 +670,20 @@ Definition extend_trace (r : rollout) (t reward : nat) :=
               to what is already known. There is something almost contractual about it.
             </p>
 
+            <figure class="figure-inline" aria-label="Global composition loop">
+              <h3 class="figure-title">Figure 2. The composition loop</h3>
+              <div class="figure-grid">
+                <div class="figure-step">Iteration <code>k</code>: teams publish context/target patches, local proofs, and composition assumptions.</div>
+                <div class="figure-arrow">↓</div>
+                <div class="figure-step">A shared admissibility pass filters out fragments that cannot be lawfully joined.</div>
+                <div class="figure-arrow">↓</div>
+                <div class="figure-step">JEPA-style training updates representations on the filtered corpus.</div>
+                <div class="figure-arrow">↓</div>
+                <div class="figure-step">The next round publishes stronger obligations and cleaner fragments for iteration <code>k+1</code>.</div>
+              </div>
+              <figcaption class="figure-caption">The research rhythm is cyclical: representations improve statistically while composition guarantees improve constructively.</figcaption>
+            </figure>
+
             <div>
               <span class="code-label">Sample 3 · Heap-style ownership for a sensor boundary</span>
               <pre class="code-block"><code>From mathcomp Require Import ssreflect ssrbool.
@@ -699,6 +770,18 @@ Qed.</code></pre>
               fact, one begins to shape in advance the kinds of behavior the system is even permitted to represent
               and execute.
             </p>
+
+            <figure class="figure-inline" aria-label="Convergence target">
+              <h3 class="figure-title">Figure 3. Where the program is trying to converge</h3>
+              <div class="figure-grid">
+                <div class="figure-step">Early phase: many local models, uneven assumptions, and partial overlaps in what can be safely composed.</div>
+                <div class="figure-arrow">↓</div>
+                <div class="figure-step">Middle phase: shared obligations accumulate, invalid joins are rejected, and compatible patch coverage grows.</div>
+                <div class="figure-arrow">↓</div>
+                <div class="figure-step">Limit goal: a JEPA-style representation whose predictive power is paired with stable, machine-checked composition constraints.</div>
+              </div>
+              <figcaption class="figure-caption">This is an intent diagram, not a theorem already proved on this page: convergence is the destination the agenda is designed to test.</figcaption>
+            </figure>
           </section>
 
           <section class="section" aria-labelledby="closing">
