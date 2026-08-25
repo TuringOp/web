@@ -87,6 +87,7 @@
         color: var(--text);
         background: var(--bg);
         line-height: 1.68;
+        overflow-x: clip;
       }
 
       a {
@@ -179,7 +180,11 @@
 
       p {
         margin: 0;
-        max-width: 76ch;
+        max-width: min(76ch, 100%);
+      }
+
+      pre {
+        margin: 0;
       }
 
       p + p {
@@ -236,7 +241,7 @@
       }
 
       .callout {
-        max-width: 76ch;
+        max-width: min(76ch, 100%);
         padding: 1.05rem 1rem 0.95rem;
         background: var(--panel);
         border-top: 2px solid var(--line);
@@ -245,7 +250,8 @@
       }
 
       .code-block {
-        max-width: 76ch;
+        max-width: min(76ch, 100%);
+        width: 100%;
         margin: 0;
         padding: 1rem;
         background: var(--panel-strong);
@@ -281,7 +287,7 @@
       }
 
       .figure-inline {
-        max-width: 76ch;
+        max-width: min(76ch, 100%);
         margin: 0;
         padding: 1rem;
         background: var(--panel);
