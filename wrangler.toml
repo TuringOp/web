@@ -2,6 +2,11 @@ name = "turing-site"
 main = "worker.js"
 compatibility_date = "2026-06-20"
 
+routes = [
+  { pattern = "turingops.ai", custom_domain = true },
+  { pattern = "www.turingops.ai", custom_domain = true }
+]
+
 [assets]
 binding = "ASSETS"
 directory = "./public"
