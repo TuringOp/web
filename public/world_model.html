@@ -68,6 +68,7 @@
         --line: #2b2b2b;
         --line-soft: #9ba89a;
         --muted: #2d2d2d;
+        --content-max: 76ch;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
         --space-3: 1.2rem;
@@ -180,11 +181,12 @@
 
       p {
         margin: 0;
-        max-width: min(76ch, 100%);
+        max-width: min(var(--content-max), 100%);
       }
 
       pre {
         margin: 0;
+        max-width: 100%;
       }
 
       p + p {
@@ -211,7 +213,7 @@
       }
 
       .lead {
-        max-width: 68ch;
+        max-width: min(var(--content-max), 100%);
         color: var(--muted);
         font-size: 1.12rem;
         line-height: 1.74;
@@ -220,11 +222,20 @@
       .article {
         display: grid;
         gap: 1.5rem;
+        min-width: 0;
       }
 
       .section {
         display: grid;
         gap: 0.95rem;
+        min-width: 0;
+      }
+
+      .article > *,
+      .section > *,
+      .two-col > *,
+      .mini-card > * {
+        min-width: 0;
       }
 
       .section + .section {
@@ -241,7 +252,8 @@
       }
 
       .callout {
-        max-width: min(76ch, 100%);
+        width: min(100%, var(--content-max));
+        max-width: 100%;
         padding: 1.05rem 1rem 0.95rem;
         background: var(--panel);
         border-top: 2px solid var(--line);
@@ -250,8 +262,8 @@
       }
 
       .code-block {
-        max-width: min(76ch, 100%);
-        width: 100%;
+        width: min(100%, var(--content-max));
+        max-width: 100%;
         margin: 0;
         padding: 1rem;
         background: var(--panel-strong);
@@ -273,6 +285,7 @@
       .two-col {
         display: grid;
         gap: 1rem;
+        min-width: 0;
       }
 
       .mini-card {
@@ -280,6 +293,7 @@
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
         background: var(--panel);
+        min-width: 0;
       }
 
       .mini-card p {
@@ -287,12 +301,14 @@
       }
 
       .figure-inline {
-        max-width: min(76ch, 100%);
+        width: min(100%, var(--content-max));
+        max-width: 100%;
         margin: 0;
         padding: 1rem;
         background: var(--panel);
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
+        min-width: 0;
       }
 
       .figure-title {
@@ -341,6 +357,7 @@
         line-height: 1.45;
         color: var(--muted);
         white-space: nowrap;
+        overflow-wrap: anywhere;
       }
 
       .citation a {
