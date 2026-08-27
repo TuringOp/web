@@ -34,43 +34,6 @@ npm run dev
 
 Wrangler will print a local preview URL, typically <http://127.0.0.1:8787>.
 
-### Interactive music prompt on `world_model.html`
-
-The page includes a small prompt box that calls `/api/music/generate`.
-
-Before serving, run the one-command pipeline from `music-jepa`:
-
-```sh
-cd /Users/jrule/git/music/music-jepa
-python3 scripts/run_retrain_eval_serve.py --backend-url https://music-api.turingops.ai
-```
-
-1. Start the Python backend in `music-jepa/` (expects a trained checkpoint):
-
-```sh
-cd /Users/jrule/git/music/music-jepa
-PYTHONPATH=src python3 scripts/serve_prompt_api.py --port 8788
-```
-
-2. Start the site worker in `web/`:
-
-```sh
-cd /Users/jrule/git/music/web
-npm run dev
-```
-
-`wrangler.toml` sets `MUSIC_JEPA_API_URL` to `https://music-api.turingops.ai` by default.
-
-### Cloudflare Tunnel helper commands
-
-After generating `cloudflared/config.generated.yml` from `music-jepa/scripts/run_retrain_eval_serve.py --setup-tunnel --skip-train-eval --skip-serve`:
-
-```sh
-cd /Users/jrule/git/music/web
-npm run tunnel:validate
-npm run tunnel:run
-```
-
 ## Deploy to Cloudflare Workers
 
 Before deploying, make sure `public/` is committed to git. Cloudflare's remote build only sees files present in the repository snapshot it checks out.
