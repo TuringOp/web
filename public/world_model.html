@@ -13,7 +13,7 @@
       content="world models, dependent types, Rocq, Coq, formal verification, partial commutative monoids, separation logic, model-based reinforcement learning, AI security"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#dff0df" />
+    <meta name="theme-color" content="#efd0c2" />
     <meta name="application-name" content="Turing" />
     <link rel="canonical" href="https://turingops.ai/world_model.html" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://turingops.ai/sitemap.xml" />
@@ -61,13 +61,13 @@
     <style>
       :root {
         color-scheme: light;
-        --bg: #e8f2e6;
-        --panel: #eef6ec;
-        --panel-strong: #e3eee1;
+        --bg: #fdf8f4;
+        --panel: #f6e1d7;
+        --panel-strong: #f1d4c7;
         --text: #111111;
         --line: #2b2b2b;
-        --line-soft: #9ba89a;
-        --muted: #2d2d2d;
+        --line-soft: #cda28f;
+        --muted: #372a25;
         --content-max: 76ch;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
@@ -86,7 +86,8 @@
         font-family: "Helvetica Neue", Arial, sans-serif;
         font-size: 18px;
         color: var(--text);
-        background: var(--bg);
+        background:
+          linear-gradient(180deg, #efd0c2 0%, #f6e0d7 16%, #fbf4ef 38%, var(--bg) 100%);
         line-height: 1.68;
         overflow-x: clip;
       }
@@ -240,7 +241,7 @@
 
       .section + .section {
         padding-top: 1.3rem;
-        border-top: 1px solid rgba(155, 168, 154, 0.45);
+        border-top: 1px solid rgba(205, 162, 143, 0.45);
       }
 
       .section h2 {
@@ -259,6 +260,65 @@
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
         font-style: italic;
+      }
+
+      .pun-aside {
+        width: min(100%, var(--content-max));
+        max-width: 100%;
+        margin-top: var(--space-3);
+        padding: 1rem;
+        background: var(--panel);
+        border-top: 2px solid var(--line);
+        border-bottom: 1px solid var(--line-soft);
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .pun-aside p {
+        max-width: none;
+      }
+
+      .pun-kicker {
+        margin: 0;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .pun-controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .pun-button {
+        display: inline-block;
+        padding: 0.52rem 0.92rem;
+        border: 1px solid var(--line);
+        background: var(--text);
+        color: #f8f8f8;
+        font: inherit;
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+      }
+
+      .pun-button:hover,
+      .pun-button:focus-visible {
+        opacity: 0.9;
+      }
+
+      .pun-output {
+        min-height: 3.4em;
+        padding: 0.85rem 0.9rem;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid var(--line-soft);
+        font-size: 0.97rem;
+        line-height: 1.55;
       }
 
       .code-block {
@@ -438,6 +498,20 @@
           futures, incurious about its limits. Dependent type theory offers a sterner bargain: an imagination
           made to travel with its papers.
         </p>
+
+        <aside class="pun-aside" aria-labelledby="pun-generator-title">
+          <p class="pun-kicker">Optional aside</p>
+          <p id="pun-generator-title">
+            If the tectonic pressure of the page grows a little high, press the button for a small geography or
+            geology pun.
+          </p>
+          <div class="pun-controls">
+            <button class="pun-button" type="button" id="generate-pun">Generate Pun</button>
+          </div>
+          <p class="pun-output" id="pun-output" aria-live="polite">
+            No fault if you skip this section.
+          </p>
+        </aside>
 
         <div class="article">
           <section class="section" aria-labelledby="broad-strokes">
@@ -835,6 +909,52 @@ Qed.</code></pre>
         </p>
       </footer>
     </div>
+    <script>
+      (() => {
+        const puns = [
+          "I tried to make a map joke, but the whole thing went off course.",
+          "Sedimentary rocks are easy company: they never take anything for granite.",
+          "The geologist broke up with the volcano because the relationship kept erupting.",
+          "I asked the mountain for advice, and it told me to take the high ground.",
+          "My atlas is so dramatic it turns every road trip into a plot twist.",
+          "The tectonic plates had an argument, but eventually they found common ground.",
+          "That canyon joke had depth, but it took a while to land.",
+          "The mineral collection started a band, but only the boulder had stage presence.",
+          "I wanted to tell a glacier joke, but it needed better timing to drift by.",
+          "The cartographer stayed calm under pressure; she always knew where things stood.",
+          "A shameless cliff is just an escarpment with no sense of boundaries.",
+          "The magma comedian is raw talent, though the material still needs to cool.",
+          "Our hiking plan looked solid on paper until the hill added its own topography.",
+          "The pebble dreamed big, but everyone said it was going through a rocky phase.",
+          "I asked the desert for directions and it told me to dune my own research.",
+          "The valley kept the best gossip because everything eventually rolled downhill.",
+          "The earthquake memoir was gripping, if a little unsettling in structure.",
+          "That geode is proof that even very plain exteriors can be hiding a cavity of surprises."
+        ];
+
+        const button = document.getElementById("generate-pun");
+        const output = document.getElementById("pun-output");
+
+        if (!button || !output || puns.length === 0) {
+          return;
+        }
+
+        let lastIndex = -1;
+
+        button.addEventListener("click", () => {
+          let nextIndex = Math.floor(Math.random() * puns.length);
+
+          if (puns.length > 1) {
+            while (nextIndex === lastIndex) {
+              nextIndex = Math.floor(Math.random() * puns.length);
+            }
+          }
+
+          lastIndex = nextIndex;
+          output.textContent = puns[nextIndex];
+        });
+      })();
+    </script>
   </body>
 </html>
 
