@@ -6,11 +6,11 @@
     <title>Turing | Dependently Typed World Models</title>
     <meta
       name="description"
-      content="A detailed essay on dependently typed world models, connecting model-based reinforcement learning with Rocq proofs over partial commutative monoids."
+      content="A detailed essay on dependently typed world models, connecting JEPA-style predictive learning with Rocq-based planning contracts for safer autonomy."
     />
     <meta
       name="keywords"
-      content="world models, dependent types, Rocq, Coq, formal verification, partial commutative monoids, separation logic, model-based reinforcement learning, AI security"
+      content="world models, dependent types, Rocq, Coq, JEPA, model-based reinforcement learning, AI alignment, multi-agent safety"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#ffffff" />
@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Turing | Dependently Typed World Models" />
     <meta
       name="twitter:description"
-      content="A report connecting world-model planning with proof-carrying resource models and dependent type theory."
+      content="A report connecting world-model planning with JEPA-style prediction and dependent type theory."
     />
     <script type="application/ld+json">
       {
@@ -53,7 +53,7 @@
           "world models",
           "dependent type theory",
           "Rocq",
-          "partial commutative monoids",
+          "JEPA",
           "AI security"
         ]
       }
@@ -679,29 +679,26 @@ Definition single_action (a : nat) : CheckedRollout :=
             </p>
           </section>
 
-          <section class="section" aria-labelledby="pcm-bridge">
+          <section class="section" aria-labelledby="jepa-bridge">
             <p class="kicker">The Rocq bridge</p>
-            <h2 id="pcm-bridge">Partial commutative monoids as a semantics of resource</h2>
+            <h2 id="jepa-bridge">From prediction to permission: making JEPA outputs action-worthy</h2>
             <p>
               Once that introductory discipline is in place, the harder question arrives on its own: what happens
               when the state is no longer a tidy singular thing, but scattered across tools, memories, caches, and
-              collaborating actors? Here is where we reach for a grammar from formal verification that was built
-              exactly for this situation: partial commutative monoids, or PCMs. They arise wherever one needs to
-              reason about fragments of state that may be joined only when they genuinely belong together.
+              collaborating actors? JEPA gives a practical answer to part of that puzzle. It learns what can be
+              inferred from partial context without pretending to see the whole scene. In fast-moving systems, that
+              restraint is a strength.
             </p>
             <p>
-              The algebra is spare and exacting—almost austere. A notion of validity. A way of joining compatible
-              pieces. A neutral element that disappears on contact. Rules that guarantee composition behaves the same
-              way every time. From that compact kit one can describe memory as separable fragments, histories as
-              traces that accumulate without tangling, and records that combine lawfully only under explicit
-              conditions.
+              But predictive adequacy is not yet operational legitimacy. A latent state may be useful for estimating
+              what comes next while still being too thin to justify consequential action. Dependent types are where
+              that distinction becomes explicit. They let us demand, at construction time, that a planning proposal
+              carry evidence about what was observed, what is uncertain, and what remains outside scope.
             </p>
             <p>
-              That is precisely the fluency a serious world model tends to lack. A learned simulator knows how to
-              blend predictions numerically; it is far less comfortable combining responsibilities. PCMs offer a way
-              to make boundaries first-class: which observations belong where, which trace fragments may be joined,
-              which cached beliefs are mutually compatible, and—crucially—when the system is reaching for something
-              that should have stayed separate.
+              In that sense, the bridge is narrative as much as technical: JEPA asks what the model can responsibly
+              predict from a partial glimpse, and dependent typing asks what the system may responsibly do with that
+              prediction. One learns the shape of possibility; the other guards the terms of action.
             </p>
           </section>
 
@@ -717,19 +714,19 @@ Definition single_action (a : nat) : CheckedRollout :=
             <div>
               <span class="code-label">Sample 1 · A proof-carrying world interface</span>
               <pre class="code-block"><code>From mathcomp Require Import ssreflect ssrbool ssrnat seq.
-From pcm Require Import pcm.
 
 Section TypedWorld.
-Context {State : pcm}.
+Context {State Observation Action : Type}.
+Context (Adm : State -&gt; Prop).
+
+Record CheckedState := {
+  state_val : State;
+  state_ok : Adm state_val
+}.
 
 Record WorldModel := {
-  observe : State -&gt; seq nat -&gt; State;
-  imagine : State -&gt; seq nat -&gt; State;
-  admissible : State -&gt; Prop;
-  observe_ok : forall s frame,
-    admissible s -&gt; admissible (observe s frame);
-  imagine_ok : forall s actions,
-    admissible s -&gt; valid (imagine s actions)
+  observe : CheckedState -&gt; seq Observation -&gt; CheckedState;
+  imagine : CheckedState -&gt; seq Action -&gt; option CheckedState
 }.
 
 End TypedWorld.</code></pre>
@@ -741,29 +738,26 @@ End TypedWorld.</code></pre>
             </p>
 
             <div>
-              <span class="code-label">Sample 2 · A typed rollout trace</span>
-              <pre class="code-block"><code>From mathcomp Require Import ssreflect ssrbool ssrnat seq.
-From pcm Require Import pcm natmap.
+              <span class="code-label">Sample 2 · A typed context-target predictor</span>
+              <pre class="code-block"><code>From Coq Require Import List Arith.
+Import ListNotations.
 
-Record rollout := {
-  trace : history nat;
-  horizon : nat;
-  horizon_pos : horizon &gt; 0
+Record PredictivePair := {
+  context_tokens : list nat;
+  target_tokens : list nat;
+  context_nonempty : length context_tokens &gt; 0
 }.
 
-Definition extend_trace (r : rollout) (t reward : nat) :=
-  if t == 0 then None
-  else if valid ((t \-&gt; reward) \+ trace r)
-       then Some {| trace := (t \-&gt; reward) \+ trace r;
-                    horizon := horizon r;
-                    horizon_pos := horizon_pos r |}
-       else None.</code></pre>
+Definition safe_predict (p : PredictivePair) : option (list nat) :=
+  if Nat.eqb (length (context_tokens p)) 0
+  then None
+  else Some (target_tokens p).</code></pre>
             </div>
 
             <p>
-              Here a rollout is not just a sequence of events but a sequence with standing. It carries evidence
-              about its own horizon, and it grows only when the next fragment can be joined, cleanly and lawfully,
-              to what is already known. There is something almost contractual about it.
+              Here a prediction is not treated as universally valid just because a model emitted it. It is tied to
+              an explicit context requirement. If the context is absent or too thin, the constructive path to action
+              simply does not open.
             </p>
 
             <figure class="figure-inline" aria-label="Global composition loop">
@@ -781,28 +775,27 @@ Definition extend_trace (r : rollout) (t reward : nat) :=
             </figure>
 
             <div>
-              <span class="code-label">Sample 3 · Heap-style ownership for a sensor boundary</span>
-              <pre class="code-block"><code>From mathcomp Require Import ssreflect ssrbool.
-From pcm Require Import heap.
+              <span class="code-label">Sample 3 · Trust-annotated observations for critical planning</span>
+              <pre class="code-block"><code>From Coq Require Import List Arith.
 
-Definition sensor_write (p : ptr) (v : dynamic id) (h : heap) :=
-  if p == null then Undef else upd p v h.
+Inductive Trust := Unverified | Verified.
 
-Lemma sensor_write_preserves_nonnull p v h :
-  p != null -&gt;
-  sensor_write p v h != Undef.
-Proof.
-move=&gt; p_nonnull.
-rewrite /sensor_write p_nonnull.
-case: h=&gt; //= fm pf.
-by case: decP=&gt; // /eqP.
-Qed.</code></pre>
+Record Observation := {
+  payload : nat;
+  trust : Trust
+}.
+
+Definition usable_for_critical_plan (o : Observation) : bool :=
+  match trust o with
+  | Verified =&gt; true
+  | Unverified =&gt; false
+  end.</code></pre>
             </div>
 
             <p>
               A real system would be more elaborate than these sketches, obviously. But the pattern is clear enough:
-              sensing, caching, and acting can be treated as resource transitions with visible terms. An action
-              need not rest on anonymous confidence. It can be asked to show its receipts.
+              sensing, predicting, and acting can be made to carry explicit trust conditions. An action need not rest
+              on anonymous confidence. It can be asked to show why this evidence, now, is enough.
             </p>
           </section>
 
@@ -840,9 +833,8 @@ Qed.</code></pre>
               <article class="mini-card">
                 <h3>Compositional isolation</h3>
                 <p>
-                  PCM-style joins make incompatibility explicit. They offer a formal language for keeping secrets,
-                  tenants, contexts, and temporary capabilities separate before they dissolve into one mute latent
-                  blur.
+                  Typed interfaces make incompatibility explicit at the planning boundary. They help keep secrets,
+                  tenants, contexts, and temporary capabilities from being casually blended into one mute latent blur.
                 </p>
               </article>
               <article class="mini-card">
