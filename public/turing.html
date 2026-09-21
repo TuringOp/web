@@ -13,7 +13,7 @@
       content="formal verification, smart contracts, haskell, scala, coq, machine-learning, artificial-intelligence, probabilistic-programming, bayesian-inference"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#ef595f" />
+    <meta name="theme-color" content="#7c4d9e" />
     <meta name="application-name" content="Turing" />
     <link rel="canonical" href="https://turingops.ai/turing.html" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://turingops.ai/sitemap.xml" />
@@ -50,11 +50,12 @@
       :root {
         color-scheme: light;
         --bg: #ffffff;
-        --panel: #ef595f;
+        --panel: #7c4d9e;
+        --panel-text: #ffffff;
         --text: #111111;
-        --line: #111111;
-        --line-soft: #d27a7f;
-        --muted: #49282b;
+        --line: #23172f;
+        --line-soft: #a47fbd;
+        --muted: #4c3b62;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
         --space-3: 1.2rem;
@@ -188,6 +189,7 @@
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
         background: var(--panel);
+        color: var(--panel-text);
         padding: 1rem 1rem 0.85rem;
       }
 
@@ -221,7 +223,7 @@
 
       .button:not(.secondary) {
         background: var(--panel);
-        color: var(--text);
+        color: var(--panel-text);
       }
 
       .button:hover,

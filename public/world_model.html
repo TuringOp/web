@@ -13,7 +13,7 @@
       content="world models, dependent types, Rocq, Coq, JEPA, model-based reinforcement learning, AI alignment, multi-agent safety"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#ef595f" />
+    <meta name="theme-color" content="#7c4d9e" />
     <meta name="application-name" content="Turing" />
     <link rel="canonical" href="https://turingops.ai/world_model.html" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://turingops.ai/sitemap.xml" />
@@ -62,12 +62,14 @@
       :root {
         color-scheme: light;
         --bg: #ffffff;
-        --panel: #ef595f;
-        --panel-strong: #e24a51;
+        --panel: #7c4d9e;
+        --panel-strong: #693d88;
+        --panel-text: #ffffff;
+        --panel-muted: #ede4f7;
         --text: #111111;
-        --line: #111111;
-        --line-soft: #d27a7f;
-        --muted: #49282b;
+        --line: #23172f;
+        --line-soft: #a47fbd;
+        --muted: #4c3b62;
         --content-max: 76ch;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
@@ -240,7 +242,7 @@
 
       .section + .section {
         padding-top: 1.3rem;
-        border-top: 1px solid rgba(210, 122, 127, 0.45);
+        border-top: 1px solid rgba(164, 127, 189, 0.45);
       }
 
       .section h2 {
@@ -258,6 +260,7 @@
         background: var(--panel);
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
+        color: var(--panel-text);
         font-style: italic;
       }
 
@@ -269,6 +272,7 @@
         background: var(--panel);
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
+        color: var(--panel-text);
         display: grid;
         gap: 0.8rem;
       }
@@ -283,7 +287,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         font-weight: 600;
-        color: var(--muted);
+        color: var(--panel-muted);
       }
 
       .pun-controls {
@@ -298,7 +302,7 @@
         padding: 0.52rem 0.92rem;
         border: 1px solid var(--line);
         background: var(--panel-strong);
-        color: var(--text);
+        color: var(--panel-text);
         font: inherit;
         font-size: 0.92rem;
         font-weight: 600;
@@ -314,8 +318,9 @@
       .pun-output {
         min-height: 3.4em;
         padding: 0.85rem 0.9rem;
-        background: rgba(255, 255, 255, 0.52);
+        background: rgba(35, 23, 47, 0.26);
         border: 1px solid var(--line-soft);
+        color: var(--panel-text);
         font-size: 0.97rem;
         line-height: 1.55;
       }
@@ -327,6 +332,7 @@
         padding: 1rem;
         background: var(--panel-strong);
         border: 1px solid var(--line-soft);
+        color: var(--panel-text);
         overflow-x: auto;
         font-size: 0.9rem;
         line-height: 1.54;
@@ -352,6 +358,7 @@
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
         background: var(--panel);
+        color: var(--panel-text);
         min-width: 0;
       }
 
@@ -367,6 +374,7 @@
         background: var(--panel);
         border-top: 2px solid var(--line);
         border-bottom: 1px solid var(--line-soft);
+        color: var(--panel-text);
         min-width: 0;
       }
 
@@ -386,6 +394,7 @@
         padding: 0.55rem 0.6rem;
         border: 1px solid var(--line-soft);
         background: var(--panel-strong);
+        color: var(--panel-text);
         font-size: 0.91rem;
         line-height: 1.45;
       }
@@ -394,14 +403,14 @@
         text-align: center;
         font-size: 0.95rem;
         line-height: 1;
-        color: var(--muted);
+        color: var(--panel-muted);
       }
 
       .figure-caption {
         margin-top: 0.7rem;
         font-size: 0.8rem;
         line-height: 1.4;
-        color: var(--muted);
+        color: var(--panel-muted);
       }
 
       footer {
