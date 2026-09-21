@@ -13,7 +13,7 @@
       content="world models, dependent types, Rocq, Coq, JEPA, model-based reinforcement learning, AI alignment, multi-agent safety"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#ef595f" />
+    <meta name="theme-color" content="#f3eee6" />
     <meta name="application-name" content="Turing" />
     <link rel="canonical" href="https://turingops.ai/world_model.html" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://turingops.ai/sitemap.xml" />
@@ -62,14 +62,16 @@
       :root {
         color-scheme: light;
         --bg: #ffffff;
-        --panel: #ef595f;
-        --panel-strong: #ef595f;
-        --panel-text: #ffffff;
-        --panel-muted: #fde9ea;
+        --panel: #f3eee6;
+        --panel-strong: #e7dfd2;
+        --panel-text: #111111;
+        --panel-muted: #685d52;
         --text: #111111;
-        --line: #351517;
-        --line-soft: #e19194;
-        --muted: #6b3134;
+        --line: #27231f;
+        --line-soft: #cdc4b6;
+        --muted: #685d52;
+        --accent: #22384c;
+        --accent-text: #ffffff;
         --content-max: 76ch;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
@@ -94,7 +96,7 @@
       }
 
       a {
-        color: var(--text);
+        color: var(--accent);
         text-underline-offset: 0.12em;
       }
 
@@ -132,6 +134,7 @@
         letter-spacing: 0.02em;
         text-decoration: none;
         text-align: center;
+        color: var(--text);
       }
 
       nav {
@@ -141,6 +144,7 @@
       nav a {
         font-size: 0.9rem;
         font-weight: 500;
+        color: var(--text);
         text-decoration: none;
         border-bottom: 1px solid transparent;
       }
@@ -242,7 +246,7 @@
 
       .section + .section {
         padding-top: 1.3rem;
-        border-top: 1px solid rgba(225, 145, 148, 0.45);
+        border-top: 1px solid rgba(205, 196, 182, 0.65);
       }
 
       .section h2 {
@@ -301,8 +305,8 @@
         display: inline-block;
         padding: 0.52rem 0.92rem;
         border: 1px solid var(--line);
-        background: var(--panel-strong);
-        color: var(--panel-text);
+        background: var(--accent);
+        color: var(--accent-text);
         font: inherit;
         font-size: 0.92rem;
         font-weight: 600;
@@ -318,7 +322,7 @@
       .pun-output {
         min-height: 3.4em;
         padding: 0.85rem 0.9rem;
-        background: rgba(53, 21, 23, 0.26);
+        background: rgba(34, 56, 76, 0.06);
         border: 1px solid var(--line-soft);
         color: var(--panel-text);
         font-size: 0.97rem;
@@ -344,7 +348,7 @@
         font-size: 0.76rem;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--panel-muted);
       }
 
       .two-col {

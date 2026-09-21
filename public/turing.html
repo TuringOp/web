@@ -13,7 +13,7 @@
       content="formal verification, smart contracts, haskell, scala, coq, machine-learning, artificial-intelligence, probabilistic-programming, bayesian-inference"
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#ef595f" />
+    <meta name="theme-color" content="#f3eee6" />
     <meta name="application-name" content="Turing" />
     <link rel="canonical" href="https://turingops.ai/turing.html" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://turingops.ai/sitemap.xml" />
@@ -50,12 +50,14 @@
       :root {
         color-scheme: light;
         --bg: #ffffff;
-        --panel: #ef595f;
-        --panel-text: #ffffff;
+        --panel: #f3eee6;
+        --panel-text: #111111;
         --text: #111111;
-        --line: #351517;
-        --line-soft: #e19194;
-        --muted: #6b3134;
+        --line: #27231f;
+        --line-soft: #cdc4b6;
+        --muted: #685d52;
+        --accent: #22384c;
+        --accent-text: #ffffff;
         --space-1: 0.45rem;
         --space-2: 0.8rem;
         --space-3: 1.2rem;
@@ -105,7 +107,7 @@
       }
 
       a {
-        color: var(--text);
+        color: var(--accent);
       }
 
       .brand {
@@ -115,6 +117,7 @@
         letter-spacing: 0.02em;
         text-decoration: none;
         text-align: center;
+        color: var(--text);
       }
 
       nav {
@@ -124,6 +127,7 @@
       nav a {
         font-size: 0.9rem;
         font-weight: 500;
+        color: var(--text);
         text-decoration: none;
         border-bottom: 1px solid transparent;
       }
@@ -222,8 +226,8 @@
       }
 
       .button:not(.secondary) {
-        background: var(--panel);
-        color: var(--panel-text);
+        background: var(--accent);
+        color: var(--accent-text);
       }
 
       .button:hover,
